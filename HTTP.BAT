@@ -1,0 +1,1 @@
+c:\python27\python.exe -m SimpleHTTPServer %* 80

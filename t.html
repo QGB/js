@@ -1,0 +1,13 @@
+<script>
+function reqListener () {
+	console.log(11,xhr,233)
+	var su=this.responseText
+	eval(su)
+}
+
+var xhr = new XMLHttpRequest();
+xhr.onload = reqListener;
+xhr.open("get", "U.js", true);
+xhr.send();
+
+</script>
