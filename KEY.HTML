@@ -1,0 +1,21 @@
+<script src="jq.js" charset="utf-8"></script>
+
+
+<script>
+
+function simulateKeyPress(character) {
+  jQuery.event.trigger( 'keypress',  character.charCodeAt(0) )
+  
+  }
+
+$(function() {
+  $('body').keypress(function(e) {
+	console.log(e)
+    alert(e);
+  });
+
+  simulateKeyPress("e");
+});
+
+
+</script>
