@@ -1,1 +1,1 @@
-c:\python27\python.exe -m SimpleHTTPServer %* 80
+C:\QGB\Anaconda2\python.exe -m SimpleHTTPServer %* 80

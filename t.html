@@ -1,14 +1,48 @@
-<script>
-function reqListener () {
-	console.log(11,xhr,233)
-	var su=this.responseText
-	eval(su)
-}
-
+<html>
+<meta charset='utf-8'></meta>
+<head>
+<script type="text/javascript" src="U.js"></script>
+<script type="text/javascript">
+console.log(U)
 var xhr = new XMLHttpRequest();
-xhr.onload = reqListener;
-xhr.open("get", "U.js", true);
+xhr.onload = function(){
+ru=this.response
+r=eval(ru)
+console.log(r)
+}
+xhr.open("get", "./U.js", true);
 xhr.send();
 
+
+
+
+<!-- $(document).ready(function(){ -->
+  <!-- p=$("p") -->
+  <!-- console.log(p) -->
+  <!-- p.click(function(){ -->
+  <!-- $(this).hide(); -->
+  <!-- }); -->
+<!-- }); -->
 </script>
+</head>
+
+<body>
+<p>If you click on me, I will disappear.</p>
+</body>
+
+</html> 
+
+
+
+
+<!-- <script> -->
+<!-- function reqListener () { -->
+	<!-- console.log(11,xhr,233) -->
+	<!-- var su=this.responseText -->
+	<!-- eval(su) -->
+<!-- } -->
+
+
+
+<!-- </script> -->
 

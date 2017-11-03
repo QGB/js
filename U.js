@@ -1,6 +1,9 @@
 
 (function (){
-	console.log(this)
+	U={}
+	
+	
+	// console.log(this)
 	// alert(this)
 	var U=window.U=233
 	return 11
