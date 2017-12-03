@@ -1,15 +1,31 @@
 	<html>
 	<meta charset='utf-8'></meta>
 	<head>
-	<script type="text/javascript" src="jq.js"></script>
+	<script type="text/javascript" src="jquery-1.8.1.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
 	  p=$("p")
-	  console.log(p)
+	  <!-- console.log(p) -->
 	  p.click(function(){
 	  $(this).hide();
 	  });
 	});
+	url='http://192.168.2.11'
+	url='https://www.baidu.com'
+	x=$.ajax({'url':url,
+	dataType:"jsonp",
+	
+	'error':function(){console.log(this)}
+	
+	})
+	console.log(x)
+	<!-- alert(x.response) -->
+	<!-- setTimeout(function(){ -->
+	<!-- x=new XMLHttpRequest() -->
+	<!-- x.open('get',url) -->
+	<!-- x.send() -->
+	<!-- console.log(x) -->
+	<!-- },2222) -->
 	</script>
 	</head>
 

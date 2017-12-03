@@ -1,4 +1,4 @@
-/*!
+/*!源自 https://github.com/codepiano/JQuerySrcComment 6 stars
  * jQuery JavaScript Library v1.8.1
  * http://jquery.com/
  *
