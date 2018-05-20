@@ -1,4 +1,4 @@
-U={};T={}
+U={};T={};N={}
 U.isList=U.isArray=Array.isArray
 U.isint=U.isInt=   Number.isInteger
 U.isnum=U.isNum=   function(a){return typeof a==='number'}
@@ -46,26 +46,7 @@ T.sub=function (a,start,end){//#TODO start lists
 }
 
 
-
-//////////////////////////////
-
-function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms) )  }
-giout=0
-window.glout=window.glout||[]
-function out(a){
-	giout+=1
-	window["_"+giout]=a
-	if(window['_']){
-		if(! window._===window["_"+(giout-1)]){
-			if(  giout===1)	return '_ 已被其他地方使用 使用 _'+giout 
-			else return a
-		}
-	} 
-	window._=a
-	return a
-}
-
-function http(url,m='get',onload=null){/*
+N.http=function (url,m='get',onload=null){/*
 if m not 'get'  will post(data=m) 
 in snippets console.log useless???   Console > Hide all 2 Default 
 */
@@ -94,6 +75,33 @@ in snippets console.log useless???   Console > Hide all 2 Default
 
 }
 
+if(window){
+	window.U=U
+	window.T=T
+	window.N=N
+	qgb='from qgb.js snippet'
+	console.log(qgb)
+	window.qgb=qgb
+}
+//////////////////////////////
+
+function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms) )  }
+giout=0
+window.glout=window.glout||[]
+function out(a){
+	giout+=1
+	window["_"+giout]=a
+	if(window['_']){
+		if(! window._===window["_"+(giout-1)]){
+			if(  giout===1)	return '_ 已被其他地方使用 使用 _'+giout 
+			else return a
+		}
+	} 
+	window._=a
+	return a
+}
+
+
 async function test(){
 
 // 	alert(0)
@@ -103,8 +111,6 @@ async function test(){
 }
 
 
-gs='from qgb.js snippet'
-console.log(gs)
 //alert(gs)
 
 gsh2c='https://github.com/niklasvh/html2canvas/releases/download/v1.0.0-alpha.12/html2canvas.js'
