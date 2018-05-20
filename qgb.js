@@ -1,8 +1,13 @@
 U={};T={}
 U.isList=U.isArray=Array.isArray
+U.isint=U.isInt=   Number.isInteger
+U.isnum=U.isNum=   function(a){return typeof a==='number'}
+U.istr=U.isStr=    function(a){return typeof a==='string'}
+U.isbool=U.isBool= function(a){return typeof a==='boolean'}
 
+U.str=String
 
-T.sub=function (a,start,end){
+T.sub=function (a,start,end){//#TODO start lists
 	startLen=start.length
 	start=a.indexOf(start)
 	if(start===-1)return ''
@@ -11,19 +16,38 @@ T.sub=function (a,start,end){
 	if(end){
 		if(U.isArray(end)){
 			for(i of end){
-				
+				i=U.str(i)
+				if(i){
+					i=a.indexOf(i,start)
+					if(i===-1)continue
+					else{
+						end=i
+						break
+					}
+				}else{
+					if(i===''){
+						end=a.length
+						break
+					}
+					else continue
+				}
 			}
+		}else if(U.istr(end)){
+			end=a.indexOf(end,start)
+			if(end===-1)return ''
 		}
-		end=a.indexOf(end,start)
-		if(end===-1)return ''
-		else end=end-start
+// 		else if(U.isInt(end)){}
+		else {
+			throw 'end must be list or str'
+		}
 	}else   end=a.length
+	end=end-start
 	return a.substr(start,end)// substr(start,length)
 }
 
 
 
-///////////////////////////////
+//////////////////////////////
 
 function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms) )  }
 giout=0
