@@ -1,7 +1,9 @@
 : %wspath%exe\pos.exe 666
 git pull cq master
 
-if "%*"=="" (for /f "delims=" %%i in ('%wspath%datetime') do set commit_msg=%%i ) else (set commit_msg=%*)
+if not defined wspath (set wspath=G:\QGB\babun\cygwin\home\qgb\wshell\)
+
+if "%*"=="" (for /f "delims=" %%i in ('%wspath%datetime.bat') do set commit_msg=%%i ) else (set commit_msg=%*)
 
 
 for %%a in ("%cd%") do set repo=%%~nxa
