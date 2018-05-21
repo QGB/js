@@ -1,4 +1,6 @@
 : %wspath%exe\pos.exe 666
+git pull cq master
+
 if "%*"=="" (for /f "delims=" %%i in ('%wspath%datetime') do set commit_msg=%%i ) else (set commit_msg=%*)
 
 
