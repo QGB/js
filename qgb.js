@@ -61,7 +61,7 @@ in snippets console.log useless???   Console > Hide all 2 Default
 	};
 	if(onload){
 		xhr.onload = onload
-	}else{		
+	}else{
 		xhr.onload = function () {
 		  console.log('DONE', xhr.status);
 		};
