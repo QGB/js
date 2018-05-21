@@ -1,3 +1,4 @@
+: %wspath%exe\pos.exe 666
 if "%*"=="" (for /f "delims=" %%i in ('%wspath%datetime') do set commit_msg=%%i ) else (set commit_msg=%*)
 
 
