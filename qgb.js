@@ -87,7 +87,7 @@ if(window){
 
 function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms) )  }
 giout=0
-window.glout=window.glout||[]
+// window.glout=window.glout||[]
 function out(a){
 	giout+=1
 	window["_"+giout]=a
