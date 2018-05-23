@@ -1,4 +1,5 @@
 print(window['qgb']+' > taobao.js')
+loadQGB()
 gs={
 item     : 'div.item'     ,
 img      : 'a.pic-link'   ,
@@ -10,7 +11,7 @@ shop     : 'span.dsrs'    ,
 location : 'div.location' ,
 icons    : 'ul.icons'     ,
 }
-
+gsv=U.getValues(gs)
 
 function t(){
 	if(gtaobao_pause)return
@@ -24,10 +25,15 @@ function t(){
 
 // t()
 
-print(U.getValues(gs))
+// print()
 // alert(233333)
 
 function onePage(){
-	items=qs(g)
-	
+	items=qs(gsv[0])
+	len=items.length
+	print(len)
+	for(i of items){
+		print(i)
+		break
+	}
 }

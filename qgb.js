@@ -26,6 +26,11 @@ U.getKeys=function(a){
 	for(i in a)r.push(i)
 	return r
 }
+U.list=U.toList=function(a){
+	r=[]
+	for(i of a)r.push(i)
+	return r
+}
 
 T.sub=function (a,start,end){//#TODO start lists
 	startLen=start.length
