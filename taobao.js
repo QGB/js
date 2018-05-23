@@ -13,6 +13,7 @@ icons    : 'ul.icons'     ,
 
 
 function t(){
+	if(gtaobao_pause)return
 	print(new Date())
 	setTimeout(function(){
 		t()
