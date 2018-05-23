@@ -14,7 +14,7 @@ icons    : 'ul.icons'     ,
 
 function t(){
 	if(gtaobao_pause)return
-	print(new Date())
+	print([,new Date()])
 	setTimeout(function(){
 		t()
 		
@@ -22,7 +22,12 @@ function t(){
 	
 }
 
-t()
+// t()
 
-print(gs)
+print(gs.values())
 // alert(233333)
+
+function onePage(){
+	items=qs(g)
+	
+}
