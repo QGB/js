@@ -12,7 +12,14 @@ icons    : 'ul.icons'     ,
 }
 
 
-
+function t(){
+	print(new Date())
+	setTimeout(function(){
+		t()
+		
+	},999)
+	
+}
 
 
 print(gs)
