@@ -21,6 +21,7 @@ function t(){
 	
 }
 
+t()
 
 print(gs)
 // alert(233333)
