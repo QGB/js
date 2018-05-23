@@ -16,6 +16,16 @@ U.str=function(a){
 	}
 	return a
 }
+U.getValues=U.dictValues=function(a){
+	r=[]
+	for(i in a)r.push(a[i])
+	return r
+}
+U.getKeys=function(a){
+	r=[]
+	for(i in a)r.push(i)
+	return r
+}
 
 T.sub=function (a,start,end){//#TODO start lists
 	startLen=start.length

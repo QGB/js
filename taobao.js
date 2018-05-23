@@ -24,7 +24,7 @@ function t(){
 
 // t()
 
-print(gs.values())
+print(U.getValues(gs))
 // alert(233333)
 
 function onePage(){
