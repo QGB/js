@@ -6,7 +6,16 @@ U.isnum=U.isNum=   function(a){return typeof a==='number'}
 U.istr=U.isStr=    function(a){return typeof a==='string'}
 U.isbool=U.isBool= function(a){return typeof a==='boolean'}
 
-U.str=String
+U.str=function(a){
+	if(! (typeof a==='string') ){
+		try{
+			a=JSON.stringify(a)
+		}catch(e){
+			a=String(a)
+		}
+	}
+	return a
+}
 
 T.sub=function (a,start,end){//#TODO start lists
 	startLen=start.length
