@@ -50,6 +50,9 @@ U.slice=function(a,stop){
 	return r
 }
 
+T.strip=T.trim=function(a){
+	return a.replace(/^\s+|\s+$/g, '')
+}
 T.sub=function (a,start,end){//#TODO start lists
 	startLen=start.length
 	start=a.indexOf(start)

@@ -48,7 +48,7 @@ function sPage(){
 		re.push(e.querySelector(gs.deal ).innerText )
 		re.push(e.querySelector(gs.shop ).innerText )
 		re.push(e.querySelector(gs.location ).innerText )
-		re.push(e.querySelector(gs.icons ).innerHTML )
+		re.push(e.querySelector(gs.icons ).innerHTML.trim() )
 		r.push(re)
 	}
 	clearOut()
