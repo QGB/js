@@ -1,12 +1,12 @@
+loadQGB(false)
 print(window['qgb']+' > taobao.js')
-loadQGB()
 gs={
-item     : 'div.item'     ,
+item     : 'div.item'     ,//4*11=44
 img      : 'a.pic-link'   ,//1
+title    : 'div.title'    ,
 price    : 'div.price'   ,
 ship     : 'div.ship'     ,
 deal     : 'div.deal-cnt' ,
-title    : 'div.title'    ,
 shop     : 'span.dsrs'    ,
 location : 'div.location' ,
 icons    : 'ul.icons'     ,//8
@@ -17,14 +17,14 @@ next     : 'li.item.next' ,
 }
 gsv=U.getValues(gs)
 
-function t(){
-	if(gtaobao_pause)return
-	print([,new Date()])
-	setTimeout(function(){
-		t()
-		
-	},999)
-	
+gshop={
+item     : 'dl.item',        //3*8=24
+img      : 'dt.photo > a > img',
+title    : 'a.item-name',//url a.href
+price    : 'span.c-price',
+sprice   : 'span.s-price',
+deal     : 'span.sale-num',
+comment  : 'dd.rates > div > h4 > a > span',//i
 }
 
 // t()
@@ -32,18 +32,20 @@ function t(){
 // print()
 // alert(233333)
 
-function onePage(){
+function sPage(){
 	items=qs(gsv[0])
 	len=items.length
 	print(len)
 	for(e of items){
 		rd={}
 		for(j of U.slice(gsv,1,8)){
+			
 			rd[j]=e.querySelectorAll(j).length
 		}
 		print(rd)
 		break
 	}
 }
+sPage()
 
-onePage()
+
