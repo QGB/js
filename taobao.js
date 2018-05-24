@@ -32,12 +32,12 @@ comment  : 'dd.rates > div > h4 > a > span',//i
 
 // print()
 // alert(233333)
-
+r=[]
 function sPage(){
 	items=qs(gs.item)
 	len=items.length
 	print(len)
-	r=[]
+	
 	for(e of items){
 		re=[]
 		re.push(e.querySelector(gs.img ).src )
