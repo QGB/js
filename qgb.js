@@ -43,7 +43,9 @@ U.slice=function(a,stop){
 	//if(!U.isList(a)) //TODO
 	r=[]
 	for(v of a){
+	    //U.log(start,i,stop)
 		if(start<=i && i<stop)r.push(v)
+		i+=1
 	}
 	return r
 }
