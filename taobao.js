@@ -44,7 +44,7 @@ function sPage(){
 		re.push(e.querySelector(gs.url).href)
 		re.push(e.querySelector(gs.title).innerText)
 		re.push(e.querySelector(gs.price ).innerText )
-		re.push(e.querySelectorAll(gs.ship ).length===1 ? 'free' : 0 )
+		re.push(e.querySelectorAll(gs.ship ).length===1 ? 'free' : 'No' )
 		re.push(e.querySelector(gs.deal ).innerText )
 		re.push(e.querySelector(gs.shop ).innerText )
 		re.push(e.querySelector(gs.location ).innerText )
