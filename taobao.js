@@ -3,7 +3,7 @@ loadQGB()
 gs={
 item     : 'div.item'     ,
 img      : 'a.pic-link'   ,//1
-price    : 'div.price.'   ,
+price    : 'div.price'   ,
 ship     : 'div.ship'     ,
 deal     : 'div.deal-cnt' ,
 title    : 'div.title'    ,
