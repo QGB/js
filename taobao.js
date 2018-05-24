@@ -2,7 +2,8 @@ loadQGB(false)
 print(window['qgb']+' > taobao.js')
 gs={
 item     : 'div.item'     ,//4*11=44
-img      : 'a.pic-link'   ,//1
+img      : 'img.img' ,  //'a.pic-link'   ,//1
+url      : 'div.title > a'    ,
 title    : 'div.title'    ,
 price    : 'div.price'   ,
 ship     : 'div.ship'     ,
@@ -33,18 +34,24 @@ comment  : 'dd.rates > div > h4 > a > span',//i
 // alert(233333)
 
 function sPage(){
-	items=qs(gsv[0])
+	items=qs(gs.item)
 	len=items.length
 	print(len)
+	r=[]
 	for(e of items){
-		rd={}
-		for(j of U.slice(gsv,1,8)){
-			
-			rd[j]=e.querySelectorAll(j).length
-		}
-		print(rd)
-		break
+		re=[]
+		re.push(e.querySelector(gs.img ).src )
+		re.push(e.querySelector(gs.url).href)
+		re.push(e.querySelector(gs.title).innerText)
+		re.push(e.querySelector(gs.price ).innerText )
+		re.push(e.querySelectorAll(gs.ship ).length===1 ? 'free' : 0 )
+		re.push(e.querySelector(gs.deal ).innerText )
+		re.push(e.querySelector(gs.shop ).innerText )
+		re.push(e.querySelector(gs.location ).innerText )
+		re.push(e.querySelector(gs.icons ).innerHTML )
+		r.push(re)
 	}
+	print(r)
 }
 sPage()
 
