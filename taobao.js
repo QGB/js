@@ -39,7 +39,7 @@ function onePage(){
 	for(e of items){
 		rd={}
 		for(j of U.slice(gsv,1,8)){
-			rd[j]=e.querySelectorAll().length
+			rd[j]=e.querySelectorAll(j).length
 		}
 		print(rd)
 		break
