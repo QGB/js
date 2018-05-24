@@ -1,11 +1,11 @@
 U={};T={};N={}
 U._TEXT=function(wrap) {return wrap.toString().match(/\/\*\s([\s\S]*)\s\*\//)[1];}
-U.isList=U.isArray=Array.isArray
+U.islist=U.isList=U.isArray=Array.isArray
 U.isint=U.isInt=   Number.isInteger
 U.isnum=U.isNum=   function(a){return typeof a==='number'}
 U.istr=U.isStr=    function(a){return typeof a==='string'}
 U.isbool=U.isBool= function(a){return typeof a==='boolean'}
-
+U.log=console.log
 U.str=function(a){
 	if(! (typeof a==='string') ){
 		try{
@@ -29,6 +29,22 @@ U.getKeys=function(a){
 U.list=U.toList=function(a){
 	r=[]
 	for(i of a)r.push(i)
+	return r
+}
+U.slice=function(a,stop){
+	len=arguments.length
+	step=1//#TODO
+	if(len===2)start=0
+	if(len===3){
+		start=arguments[1]
+		stop=arguments[2]
+	}
+	i=0
+	//if(!U.isList(a)) //TODO
+	r=[]
+	for(v of a){
+		if(start<=i<stop)r.push(v)
+	}
 	return r
 }
 
