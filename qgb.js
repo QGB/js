@@ -94,10 +94,10 @@ if m not 'get'  will post(data=m)
 in snippets console.log useless???   Console > Hide all 2 Default 
 */
 	var xhr = new XMLHttpRequest();
-	console.log('UNSENT', xhr.status);
+	// console.log('UNSENT', xhr.status);// UNSENT 0
 
 	xhr.open(m, url, true);
-	console.log('OPENED', xhr.status);
+	// console.log('OPENED', xhr.status);//        0
 
 	xhr.onprogress = function () {
 	  console.log('LOADING', xhr.status);

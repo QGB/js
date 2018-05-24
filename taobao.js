@@ -51,6 +51,7 @@ function sPage(){
 		re.push(e.querySelector(gs.icons ).innerHTML )
 		r.push(re)
 	}
+	clearOut()
 	print(r)
 }
 sPage()
