@@ -2,8 +2,8 @@ loadQGB(false)
 print(window['qgb']+' > taobao.js')
 gs={
 item     : 'div.item'     ,//4*11=44
-img      : 'img.img' ,  //'a.pic-link'   ,//1
 url      : 'div.title > a'    ,
+img      : 'img.img' ,  //'a.pic-link'   ,//1
 title    : 'div.title'    ,
 price    : 'div.price'   ,
 ship     : 'div.ship'     ,
@@ -36,19 +36,26 @@ B.close=function (){
 	B.eval("chrome.tabs.remove(sender.tab.id);")
 }
 B.create=function(url){
+	if(!url)url='http://192.168.2.3'
 	sc=U._TEXT(function(){/*
-chrome.tabs.create({'url': 'http://192.168.2.3', 'selected': false} ,function( tab) {
+chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 	setTimeout(function(){
-		
+		chrome.tabs.sendMessage(#id, {
+				type: 'eval',
+				options: 'alert("'+tab.title+'")'
+			}
+		)
 	},5555)
  }   
 );
 	*/})
-	B.eval("")
+	sc=sc.replace('#url',url).replace('#id',B.gtabid)
+	B.eval(sc)
 }
 B.getTabId=function(){
 	B.eval("sender.tab.id")
 }
+
 // t()
 
 // print()
@@ -61,8 +68,8 @@ function sPage(){
 	
 	for(e of items){
 		re=[]
-		re.push(e.querySelector(gs.img ).src )
 		re.push(e.querySelector(gs.url).href)
+		re.push(e.querySelector(gs.img ).src )
 		re.push(e.querySelector(gs.title).innerText)
 		re.push(e.querySelector(gs.price ).innerText )
 		re.push(e.querySelectorAll(gs.ship ).length===1 ? 'free' : '' )
@@ -74,6 +81,7 @@ function sPage(){
 	}
 	clearOut()
 	print(r)
+	B.create()
 }
 sPage()
 
