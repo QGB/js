@@ -6,7 +6,7 @@ U.isnum=U.isNum=   function(a){return typeof a==='number'}
 U.istr=U.isStr=    function(a){return typeof a==='string'}
 U.isbool=U.isBool= function(a){return typeof a==='boolean'}
 U.log=function(){
-	if(arguments)a=arguments
+	if(arguments.length)a=arguments
 	else a=['U.log',new Date()]
 	console.log(...a)
 }
