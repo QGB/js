@@ -43,22 +43,22 @@ chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 		
 		chrome.tabs.sendMessage(#id, {
 				type: 'eval',
-				options: 'alert(122)'
+				options: 'alert('+tab.id+')'
 			}
 		)
 		
 		chrome.tabs.sendMessage(#id, {
 				type: 'eval',
-				options: 'alert("'+tab.title+'")'
+				options: 'alert("'+JSON.stringify(tab)+'")'
 			}
 		)
-		// chrome.tabs.remove(tab.id)
+		chrome.tabs.remove(tab.id)
 	},1000*11)
  }   
 );
 	*/})
-	alert(B.gtabid)
-	sc=sc.replace('#url',url).replace('#id',B.gtabid).replace('#id',B.gtabid)
+	// alert(B.gtabid)
+	sc=sc.replace('#url',url).replace('#id',B.gtabid)
 	// U.log(sc)
 	B.eval(sc)
 }
@@ -97,7 +97,7 @@ function sPage(){
 }
 setTimeout(function(){
 	sPage()
-},111)
+},111)// 1  B.gtabid  undefined
 
 
 // U.log(U.str(B))
