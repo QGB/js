@@ -57,6 +57,7 @@ chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
  }   
 );
 	*/})
+	alert(B.gtabid)
 	sc=sc.replace('#url',url).replace('#id',B.gtabid).replace('#id',B.gtabid)
 	// U.log(sc)
 	B.eval(sc)
