@@ -49,7 +49,7 @@ chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 		
 		chrome.tabs.sendMessage(#id, {
 				type: 'eval',
-				options: 'alert("'+JSON.stringify(tab)+'")'
+				options: 'alert(+JSON.stringify(tab))'
 			}
 		)
 		chrome.tabs.remove(tab.id)
@@ -58,7 +58,7 @@ chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 );
 	*/})
 	// alert(B.gtabid)
-	sc=sc.replace('#url',url).replace('#id',B.gtabid)
+	sc=T.replaceAll(sc,'#id',B.gtabid).replace('#url',url)
 	// U.log(sc)
 	B.eval(sc)
 }
