@@ -5,7 +5,11 @@ U.isint=U.isInt=   Number.isInteger
 U.isnum=U.isNum=   function(a){return typeof a==='number'}
 U.istr=U.isStr=    function(a){return typeof a==='string'}
 U.isbool=U.isBool= function(a){return typeof a==='boolean'}
-U.log=console.log
+U.log=function(){
+	if(arguments)a=arguments
+	else a=['U.log',new Date()]
+	console.log(...a)
+}
 U.str=function(a){
 	if(! (typeof a==='string') ){
 		try{
@@ -52,6 +56,12 @@ U.slice=function(a,stop){
 
 T.strip=T.trim=function(a){
 	return a.replace(/^\s+|\s+$/g, '')
+}
+T.replaceAll=function(a,old,anew){
+	if(!old)return a
+	while(a.includes(old)){
+		
+	}
 }
 T.sub=function (a,start,end){//#TODO start lists
 	startLen=start.length
