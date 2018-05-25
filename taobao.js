@@ -28,6 +28,12 @@ deal     : 'span.sale-num',
 comment  : 'dd.rates > div > h4 > a > span',//i
 }
 
+function beval(a){
+	chrome.extension.sendMessage({eval: a});
+}
+function closeTab(){
+	beval("chrome.tabs.remove(sender.tab.id);")
+}
 // t()
 
 // print()
