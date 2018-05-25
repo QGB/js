@@ -58,7 +58,7 @@ T.strip=T.trim=function(a){
 	return a.replace(/^\s+|\s+$/g, '')
 }
 T.replaceAll=function(a,old,anew){
-	if(!old || !anew)return a
+	if(!old || anew===old)return a
 	while(a.includes(old)){
 		a=a.replace(old,anew)
 	}
