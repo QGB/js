@@ -28,13 +28,27 @@ deal     : 'span.sale-num',
 comment  : 'dd.rates > div > h4 > a > span',//i
 }
 B={}
+chrome.extension.sendMessage({eval: 'sender.tab.id'},function(r){B.gtabid=r});
 B.eval=function (a){
 	chrome.extension.sendMessage({eval: a});
 }
 B.close=function (){
 	B.eval("chrome.tabs.remove(sender.tab.id);")
 }
-
+B.create=function(url){
+	sc=U._TEXT(function(){/*
+chrome.tabs.create({'url': 'http://192.168.2.3', 'selected': false} ,function( tab) {
+	setTimeout(function(){
+		
+	},5555)
+ }   
+);
+	*/})
+	B.eval("")
+}
+B.getTabId=function(){
+	B.eval("sender.tab.id")
+}
 // t()
 
 // print()
