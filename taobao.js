@@ -90,4 +90,4 @@ function sPage(){
 }
 sPage()
 
-
+alert(U.str(B))
