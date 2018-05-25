@@ -83,11 +83,12 @@ function sPage(){
 	clearOut()
 	print(r)
 	B.create(re[0])
-	setTimeout(function(){
-		// alert(B)
-	},233)
+	
 	
 }
-sPage()
+setTimeout(function(){
+	sPage()
+},1)
 
-U.log(U.str(B))
+
+// U.log(U.str(B))
