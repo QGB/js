@@ -83,6 +83,7 @@ function sPage(){
 	clearOut()
 	print(r)
 	B.create(re[0])
+	alert(2333333)
 }
 sPage()
 
