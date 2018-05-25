@@ -39,8 +39,8 @@ B.create=function(url){
 	if(!url)url='http://192.168.2.3'
 	sc=U._TEXT(function(){/*
 chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
+		console.log(tab)
 	setTimeout(function(){
-		
 		chrome.tabs.sendMessage(#id, {
 				type: 'eval',
 				options: 'alert('+JSON.stringify(tab.title)+')'
