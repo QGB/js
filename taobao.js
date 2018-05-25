@@ -27,11 +27,11 @@ sprice   : 'span.s-price',
 deal     : 'span.sale-num',
 comment  : 'dd.rates > div > h4 > a > span',//i
 }
-
-function beval(a){
+B={}
+B.eval=function (a){
 	chrome.extension.sendMessage({eval: a});
 }
-function closeTab(){
+B.closeTab=function (){
 	beval("chrome.tabs.remove(sender.tab.id);")
 }
 // t()
