@@ -81,7 +81,7 @@ function sPage(){
 	}
 	clearOut()
 	print(r)
-	B.create()
+	B.create(re[0])
 }
 sPage()
 
