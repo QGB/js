@@ -84,7 +84,7 @@ function sPage(){
 	print(r)
 	B.create(re[0])
 	setTimeout(function(){
-		alert(B)
+		// alert(B)
 	},233)
 	
 }
