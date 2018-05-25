@@ -82,7 +82,7 @@ function sPage(){
 	}
 	clearOut()
 	print(r)
-	B.create(re[0])
+	
 	
 	
 }
@@ -90,5 +90,5 @@ setTimeout(function(){
 	sPage()
 },1)
 
-
+B.create()
 // U.log(U.str(B))
