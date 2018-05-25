@@ -43,6 +43,12 @@ chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 		
 		chrome.tabs.sendMessage(#id, {
 				type: 'eval',
+				options: 'alert(122)'
+			}
+		)
+		
+		chrome.tabs.sendMessage(#id, {
+				type: 'eval',
 				options: 'alert("'+tab.title+'")'
 			}
 		)
