@@ -51,7 +51,7 @@ chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 );
 	*/})
 	sc=sc.replace('#url',url).replace('#id',B.gtabid)
-	U.log(sc)
+	// U.log(sc)
 	B.eval(sc)
 }
 B.getTabId=function(){
@@ -83,13 +83,13 @@ function sPage(){
 	}
 	clearOut()
 	print(r)
-	
+	B.create(re[0])
 	
 	
 }
-setTimeout(function(){
-	sPage()
-},1)
+// setTimeout(function(){
+	
+// },1)
 
-B.create()
+sPage()
 // U.log(U.str(B))
