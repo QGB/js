@@ -31,9 +31,10 @@ B={}
 B.eval=function (a){
 	chrome.extension.sendMessage({eval: a});
 }
-B.closeTab=function (){
-	beval("chrome.tabs.remove(sender.tab.id);")
+B.close=function (){
+	B.eval("chrome.tabs.remove(sender.tab.id);")
 }
+
 // t()
 
 // print()
