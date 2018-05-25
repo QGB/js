@@ -58,10 +58,11 @@ T.strip=T.trim=function(a){
 	return a.replace(/^\s+|\s+$/g, '')
 }
 T.replaceAll=function(a,old,anew){
-	if(!old)return a
+	if(!old || !anew)return a
 	while(a.includes(old)){
-		
+		a=a.replace(old,anew)
 	}
+	return a
 }
 T.sub=function (a,start,end){//#TODO start lists
 	startLen=start.length
