@@ -43,15 +43,15 @@ chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 		
 		chrome.tabs.sendMessage(#id, {
 				type: 'eval',
+				options: 'alert('+JSON.stringify(tab.title)+')'
+			}
+		)
+		chrome.tabs.sendMessage(#id, {
+				type: 'eval',
 				options: 'alert('+tab.id+')'
 			}
 		)
 		
-		chrome.tabs.sendMessage(#id, {
-				type: 'eval',
-				options: 'alert('+JSON.stringify(tab)+')'
-			}
-		)
 		chrome.tabs.remove(tab.id)
 	},1000*11)
  }   
