@@ -46,7 +46,7 @@ chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 				// options: 'alert("'+tab.title+'")'
 			// }
 		// )
-	},5555)
+	},1000*11)
  }   
 );
 	*/})
