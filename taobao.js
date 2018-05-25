@@ -97,7 +97,7 @@ function sPage(){
 }
 setTimeout(function(){
 	sPage()
-},1)
+},111)
 
 
 // U.log(U.str(B))
