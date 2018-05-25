@@ -40,12 +40,13 @@ B.create=function(url){
 	sc=U._TEXT(function(){/*
 chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 	setTimeout(function(){
-		chrome.tabs.remove(tab.id)
-		// chrome.tabs.sendMessage(#id, {
-				// type: 'eval',
-				// options: 'alert("'+tab.title+'")'
-			// }
-		// )
+		
+		chrome.tabs.sendMessage(#id, {
+				type: 'eval',
+				options: 'alert("'+tab.title+'")'
+			}
+		)
+		// chrome.tabs.remove(tab.id)
 	},1000*11)
  }   
 );
