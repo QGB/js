@@ -39,20 +39,19 @@ B.create=function(url){
 	if(!url)url='http://192.168.2.3'
 	sc=U._TEXT(function(){/*
 chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
-		console.log(tab)
 	setTimeout(function(){
-		chrome.tabs.sendMessage(#id, {
-				type: 'eval',
-				options: 'alert('+JSON.stringify(tab.title)+')'
-			}
-		)
+		chrome.tabs.executeScript(tab.id,{
+			'code':'alert(document.title)'
+				
+			})
+
 		chrome.tabs.sendMessage(#id, {
 				type: 'eval',
 				options: 'alert('+tab.id+')'
 			}
 		)
 		
-		chrome.tabs.remove(tab.id)
+		// chrome.tabs.remove(tab.id)
 	},1000*11)
  }   
 );
