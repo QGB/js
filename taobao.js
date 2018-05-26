@@ -74,7 +74,7 @@ chrome.tabs.sendMessage(#id, {
 	}
 )
 	*/})
-	scitem=T.replaceAll(scitem,'\n',' ')
+	scitem=T.replaceAll(scitem,'\n',' ').replace('#id',B.gtabid)
 	print(scitem)
 	sc=sc.replace('#code',scitem).replace('#url',url)
 	sc=T.replaceAll(sc,'#id',B.gtabid)
