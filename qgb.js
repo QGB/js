@@ -5,6 +5,19 @@ U.isint=U.isInt=   Number.isInteger
 U.isnum=U.isNum=   function(a){return typeof a==='number'}
 U.istr=U.isStr=    function(a){return typeof a==='string'}
 U.isbool=U.isBool= function(a){return typeof a==='boolean'}
+U.giout=U.giout||0
+U.out=function (a){
+	U.giout+=1
+	window["_"+U.giout]=a
+	if(window['_']){
+		if(! window._===window["_"+(U.giout-1)]){
+			if(  U.giout===1)	return '_ 已被其他地方使用 使用 _'+U.giout 
+			else return a
+		}
+	} 
+	window._=a
+	return a
+}
 U.log=function(){
 	if(arguments.length)a=arguments
 	else a=['U.log',new Date()]
@@ -102,7 +115,15 @@ T.sub=function (a,start,end){//#TODO start lists
 	return a.substr(start,end)// substr(start,length)
 }
 
-
+N.loadJQ=N.loadJQuery=function(){
+	return N.httpEval('https://coding.net/u/qgb/p/js/git/raw/master/jquery-1.8.1.js')
+}
+N.httpEval=N.httpeval=function(url){
+	return N.http(url,'get',function(){
+		eval(this.response)
+		console.log('N.httpEval',url)
+	})
+}
 N.http=function (url,m='get',onload=null){/*
 if m not 'get'  will post(data=m) 
 in snippets console.log useless???   Console > Hide all 2 Default 
@@ -129,7 +150,7 @@ in snippets console.log useless???   Console > Hide all 2 Default
 		xhr.send(null);	
 	else xhr.send(m);
 		
-	return out(xhr)
+	return U.out(xhr)
 
 }
 
@@ -144,20 +165,9 @@ if(window){
 //////////////////////////////
 
 function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms) )  }
-giout=0
+
 // window.glout=window.glout||[]
-function out(a){
-	giout+=1
-	window["_"+giout]=a
-	if(window['_']){
-		if(! window._===window["_"+(giout-1)]){
-			if(  giout===1)	return '_ 已被其他地方使用 使用 _'+giout 
-			else return a
-		}
-	} 
-	window._=a
-	return a
-}
+
 
 
 async function test(){
