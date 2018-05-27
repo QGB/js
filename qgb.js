@@ -109,8 +109,9 @@ in snippets console.log useless???   Console > Hide all 2 Default
 */
 	var xhr = new XMLHttpRequest();
 	// console.log('UNSENT', xhr.status);// UNSENT 0
-
-	xhr.open(m, url, true);
+	if(m==='get')xhr.open(m, url, true);
+	else		 xhr.open('POST', url, true);
+	
 	// console.log('OPENED', xhr.status);//        0
 
 	xhr.onprogress = function () {
