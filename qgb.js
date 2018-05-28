@@ -1,3 +1,8 @@
+(function(window) {
+	window.qgb=123
+	console.log(window)
+})(window)
+
 U={};T={};N={}
 U._TEXT=function(wrap) {return wrap.toString().match(/\/\*\s([\s\S]*)\s\*\//)[1];}
 U.islist=U.isList=U.isArray=Array.isArray
@@ -115,6 +120,10 @@ T.sub=function (a,start,end){//#TODO start lists
 	return a.substr(start,end)// substr(start,length)
 }
 
+N.postJSON=function(url,data){
+	if(!U.istr(data))data=JSON.stringify(data)
+	return N.http(url,data)
+}
 N.loadJQ=N.loadJQuery=function(){
 	return N.httpEval('https://coding.net/u/qgb/p/js/git/raw/master/jquery-1.8.1.js')
 }

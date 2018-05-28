@@ -1,13 +1,11 @@
 {
-  "name": "js",
+  "name": "qgb",
   "version": "0.0.1",
   "description": "qgb js lib",
-  "main": "U.js",
+  "main": "qgb.js",
   "scripts": {
-	
-    "dev": "./node_modules/.bin/webpack --watch",
+    "dev": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
-	
   },
   "repository": {
     "type": "git",
