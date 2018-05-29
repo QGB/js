@@ -58,26 +58,10 @@ chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 );
 	*/})
 	scitem=U._TEXT(function(){/*
-function qtext(a){
-	try{ return document.querySelector(a).innerText
-	}catch(e){return ''}
-}
-r=[];
-r.push(document.location.href);
-if(r[0].includes('item.taobao.com/')){
-	r.push(qtext('h3.tb-main-title'));
-	r.push(qtext('.tb-promo-price > .tb-rmb-num'));
-	r.push(qtext('#J_StrPrice > .tb-rmb-num'));
-	r.push(qtext('#J_PromoType'));
-	r.push(qtext('#J_WlServiceTitle'));
-	r.push(qtext('#J_RateCounter'));
-	r.push(qtext('#J_SellCounter'));
-	r.push(qtext('.J_FavCount'));
-	x=new XMLHttpRequest();
-	x.open('POST','https://lk.lk:1122/Item');
-	x.send(JSON.stringify(r));
-}
-
+x=new XMLHttpRequest();
+x.open('GET','https://coding.net/u/qgb/p/js/git/raw/master/item.js');
+x.onload=function(){eval(this.response)}
+x.send();
 	*/})
 	scitem=T.replaceAll(scitem,'\n',' ').trim()
 	// print(scitem)
@@ -91,10 +75,14 @@ B.getTabId=function(){
 	B.eval("sender.tab.id")
 }
 
-// t()
+function taobao_nextItem(){
+	if(!U.islist(B.urls) )return U.log('B.urls not list')
+	if(B.urls.length<1 )return U.log('B.urls is empty')
+	url=B.urls.pop()
+	if(U.islist(url))  url=url[0]
+	B.create(url)
+}
 
-// print()
-// alert(233333)
 r=[]
 function sPage(){
 	items=qs(gs.item)
