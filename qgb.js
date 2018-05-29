@@ -1,8 +1,3 @@
-(function(window) {
-	window.qgb=123
-	console.log(window)
-})(window)
-
 U={};T={};N={}
 U._TEXT=function(wrap) {return wrap.toString().match(/\/\*\s([\s\S]*)\s\*\//)[1];}
 U.islist=U.isList=U.isArray=Array.isArray

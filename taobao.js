@@ -1,16 +1,16 @@
 loadQGB(false)
 print(window['qgb']+' > taobao.js')
-gs={
-item     : 'div.item'     , //4*11=44
-url      : 'div.title > a',
-img      : 'img.img' ,       //'a.pic-link'   ,//1
-title    : 'div.title'    ,
-price    : 'div.price'   ,
-ship     : 'div.ship'     ,
-deal     : 'div.deal-cnt' ,
-shop     : 'span.dsrs'    ,
-location : 'div.location' ,
-icons    : 'ul.icons'     ,//8
+gs={                                 
+item     : 'div.item'     ,           //4*11=44
+url      : 'div.title > a',          
+img      : 'img.img' ,                 //'a.pic-link'   ,//1
+title    : 'div.title'    ,          
+price    : 'div.price'   ,           
+ship     : 'div.ship'     ,          
+deal     : 'div.deal-cnt' ,          
+shop     : '.shopname'    ,          
+location : 'div.location' ,          
+icons    : 'ul.icons'     ,          //8
 
 pn  : 'li.item.active > span.num' ,
 next     : 'li.item.next' ,
