@@ -75,7 +75,7 @@ if(r[0].includes('item.taobao.com/')){
 	r.push(qtext('.J_FavCount'));
 	x=new XMLHttpRequest();
 	x.open('POST','https://lk.lk:1122/Item');
-	x.send(r);
+	x.send(JSON.stringify(r));
 }
 
 	*/})
