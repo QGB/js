@@ -50,7 +50,6 @@ chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 			'code':"#code"
 		})
 		setTimeout(function(){
-			chrome.tabs.remove(tab.id)
 			chrome.tabs.sendMessage(#id, { type: 'taobao_nextItem',options: {}	} )
 		},999)
 	},1000*11)

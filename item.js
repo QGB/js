@@ -2,8 +2,9 @@ function qtext(a){
 	try{ return document.querySelector(a).innerText
 	}catch(e){return ''}
 }
+
 r=[];
-r.push(document.location.href);
+r.push(document.location.href)
 if(r[0].includes('item.taobao.com/')){
 	r.push(qtext('h3.tb-main-title'));
 	r.push(qtext('.tb-promo-price > .tb-rmb-num'));
@@ -17,3 +18,14 @@ if(r[0].includes('item.taobao.com/')){
 	x.open('POST','https://lk.lk:1122/Item');
 	x.send(JSON.stringify(r));
 }
+
+
+if(qs('.J_TSaleProp').length<1 ){
+	alert(new Date())
+	throw r
+}
+
+
+
+chrome.extension.sendMessage({eval: "chrome.tabs.remove(sender.tab.id);" });
+
