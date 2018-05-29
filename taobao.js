@@ -37,16 +37,22 @@ B.close=function (){
 }
 B.create=function(url){
 	if(!url)url='http://192.168.2.3'
+	// if U.islist(url){
+		// setTimeout(function(){
+			// B.create()
+		// })
+	// }
+	
 	sc=U._TEXT(function(){/*
 chrome.tabs.create({'url': '#url', 'selected': true} ,function( tab) {
 	setTimeout(function(){
 		chrome.tabs.executeScript(tab.id,{
 			'code':"#code"
-				
-			})
-
-		
-		// chrome.tabs.remove(tab.id)
+		})
+		setTimeout(function(){
+			chrome.tabs.remove(tab.id)
+			chrome.tabs.sendMessage(#id, { type: 'taobao_nextItem',options: {}	} )
+		},999)
 	},1000*11)
  }   
 );
@@ -58,7 +64,7 @@ function qtext(a){
 }
 r=[];
 r.push(document.location.href);
-if(r[0].includes('taobao.com/')){
+if(r[0].includes('item.taobao.com/')){
 	r.push(qtext('h3.tb-main-title'));
 	r.push(qtext('.tb-promo-price > .tb-rmb-num'));
 	r.push(qtext('#J_StrPrice > .tb-rmb-num'));
@@ -67,20 +73,19 @@ if(r[0].includes('taobao.com/')){
 	r.push(qtext('#J_RateCounter'));
 	r.push(qtext('#J_SellCounter'));
 	r.push(qtext('.J_FavCount'));
+	x=new XMLHttpRequest();
+	x.open('POST','https://lk.lk:1122/Item');
+	x.send(r);
 }
-chrome.tabs.sendMessage(#id, {
-		type: 'taobao_itemData',
-		options: r
-	}
-)
+
 	*/})
-	scitem=T.replaceAll(scitem,'\n',' ').replace('#id',B.gtabid)
-	print(scitem)
+	scitem=T.replaceAll(scitem,'\n',' ').trim()
+	// print(scitem)
 	sc=sc.replace('#code',scitem).replace('#url',url)
 	sc=T.replaceAll(sc,'#id',B.gtabid)
 	// U.log(sc)
 	print(sc)
-	// B.eval(sc)
+	B.eval(sc)
 }
 B.getTabId=function(){
 	B.eval("sender.tab.id")
@@ -109,9 +114,13 @@ function sPage(){
 		re.push(e.querySelector(gs.icons ).innerHTML.trim() )
 		r.push(re)
 	}
+	N.postJSON('https://lk.lk:1122/SItem',r)
 	clearOut()
+	B.urls=r
 	print(r)
-	B.create(re[0])
+	
+	taobao_nextItem()
+	// B.create(r)
 	
 	
 }

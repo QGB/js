@@ -22,6 +22,7 @@ U.log=function(){
 	if(arguments.length)a=arguments
 	else a=['U.log',new Date()]
 	console.log(...a)
+	return a
 }
 U.str=function(a){
 	if(! (typeof a==='string') ){
