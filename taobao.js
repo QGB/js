@@ -77,6 +77,12 @@ B.getTabId=function(){
 function taobao_nextItem(){
 	if(!U.islist(B.urls) )return U.log('B.urls not list')
 	if(B.urls.length<1 )return U.log('B.urls is empty')
+	if(gtaobao_pause){
+		setTimeout(function(){
+			taobao_nextItem()
+		},7999)
+		return U.log('gtaobao_pause',new Date())
+	}
 	url=B.urls.pop()
 	if(U.islist(url))  url=url[0]
 	B.create(url)
