@@ -30,5 +30,5 @@ console.log(U)
 
 
 
-chrome.extension.sendMessage({eval: "chrome.tabs.remove(sender.tab.id);" });
+// chrome.extension.sendMessage({eval: "chrome.tabs.remove(sender.tab.id);" });
 
