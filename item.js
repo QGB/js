@@ -23,7 +23,7 @@ console.log(U)
 
 if(qs('.J_TSaleProp').length<1 ){
 	alert(U.str('not found taobao item',new Date()) )
-	// throw r
+	throw r
 }
 
 
