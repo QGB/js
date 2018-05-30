@@ -24,9 +24,6 @@ if(r[0].includes('item.taobao.com/')){
 	x.send(JSON.stringify(r));
 }
 
-console.log(U)
-
-
 
 
 
