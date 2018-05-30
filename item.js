@@ -19,6 +19,7 @@ if(r[0].includes('item.taobao.com/')){
 	x.send(JSON.stringify(r));
 }
 
+console.log(U)
 
 if(qs('.J_TSaleProp').length<1 ){
 	alert(new Date())
