@@ -1,3 +1,8 @@
+if(qs('.J_TSaleProp').length<1 ){
+	alert(U.str('not found taobao item',new Date()) )
+	throw r
+}
+
 function qtext(a){
 	try{ return document.querySelector(a).innerText
 	}catch(e){return ''}
@@ -21,10 +26,7 @@ if(r[0].includes('item.taobao.com/')){
 
 console.log(U)
 
-if(qs('.J_TSaleProp').length<1 ){
-	alert(U.str('not found taobao item',new Date()) )
-	throw r
-}
+
 
 
 
