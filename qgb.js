@@ -25,9 +25,17 @@ U.log=function(){
 	return a
 }
 U.str=function(a){
+	if(arguments.length==0)return ''
+	if(arguments.length>1){
+		a=U.list(arguments)
+		return U.str(a.shift())+','+U.str(...a)
+	}
 	if(! (typeof a==='string') ){
 		try{
-			a=JSON.stringify(a)
+			j=JSON.stringify(a)
+			s=String(a)
+			if(j.length>s.length)a=j
+			else                 a=s
 		}catch(e){
 			a=String(a)
 		}

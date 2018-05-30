@@ -22,8 +22,8 @@ if(r[0].includes('item.taobao.com/')){
 console.log(U)
 
 if(qs('.J_TSaleProp').length<1 ){
-	alert(new Date())
-	throw r
+	alert(U.str('not found taobao item',new Date()) )
+	// throw r
 }
 
 
