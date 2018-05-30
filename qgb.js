@@ -67,12 +67,12 @@ U.slice=function(a,stop){
 	}
 	return r
 }
-
+T.svgText_style="background:url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1.1\' width=\'30px\' height=\'30px\'>   <text x=\'0\' y=\'12\' style=\'fill:green;\' font-size=\'12\'>QGB</text></svg>')"
 T.strip=T.trim=function(a){
 	return a.replace(/^\s+|\s+$/g, '')
 }
 T.replaceAll=function(a,old,anew){
-	if(!old || anew===old)return a
+	if(!old || anew.includes(old) )return a
 	while(a.includes(old)){
 		a=a.replace(old,anew)
 	}
