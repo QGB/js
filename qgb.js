@@ -177,24 +177,27 @@ in snippets console.log useless???   Console > Hide all 2 Default
 	else		 xhr.open('POST', url, true);
 	
 	// console.log('OPENED', xhr.status);//        0
-
-	xhr.onprogress = function () {
-	  U.log('LOADING', xhr.status);
-	};
-	if(onload){
-		xhr.onload = onload
-	}else{
-		xhr.onload = function () {
-		  U.log('DONE', xhr.status);
+	try{
+		xhr.onprogress = function () {
+		  U.log('LOADING', xhr.status);
 		};
-	}
-	
-	if(m==='get')
-		xhr.send(null);	
-	else xhr.send(m);
+		if(onload){
+			xhr.onload = onload
+		}else{
+			xhr.onload = function () {
+			  U.log('DONE', xhr.status);
+			};
+		}
 		
-	return U.out(xhr)
+		if(m==='get')
+			xhr.send(null);	
+		else xhr.send(m);
+			
+	}catch(e){
+		U.log(e)
+	}
 
+	return U.out(xhr)
 }
 
 if(window){
