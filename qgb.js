@@ -5,6 +5,25 @@ U.isint=U.isInt=   Number.isInteger
 U.isnum=U.isNum=   function(a){return typeof a==='number'}
 U.istr=U.isStr=    function(a){return typeof a==='string'}
 U.isbool=U.isBool= function(a){return typeof a==='boolean'}
+U.rangeIter=function* (start,stop,step){
+  for (var i = a; i <= b; ++i) yield i;
+}
+U.range=function(stop){
+	len=arguments.length
+	start=0
+	step=1//#TODO
+	// if(len===1)start=0
+	if(len===2){
+		start=arguments[0]
+		stop=arguments[1]
+	}
+	if(len===3){
+		start=arguments[0]
+		stop=arguments[1]
+		step=arguments[2]
+	}
+	return Array.from(U.rangeIter(start,stop,step) );
+}
 U.eval=U.weval=function(a){
 	try{
 		return window.eval(a)
