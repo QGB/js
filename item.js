@@ -1,6 +1,12 @@
-if(qs('.J_TSaleProp').length<1 ){
+multi=qs('.J_TSaleProp')
+if(multi.length<1 ){
 	alert(U.str('not found taobao item',new Date()) )
 	throw r
+}else{
+	for(i of multi){
+		
+	}
+	
 }
 
 function qtext(a){
@@ -11,6 +17,7 @@ function qtext(a){
 r=[];
 r.push(document.location.href)
 if(r[0].includes('item.taobao.com/')){
+	
 	r.push(qtext('h3.tb-main-title'));
 	r.push(qtext('.tb-promo-price > .tb-rmb-num'));
 	r.push(qtext('#J_StrPrice > .tb-rmb-num'));

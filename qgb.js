@@ -5,6 +5,13 @@ U.isint=U.isInt=   Number.isInteger
 U.isnum=U.isNum=   function(a){return typeof a==='number'}
 U.istr=U.isStr=    function(a){return typeof a==='string'}
 U.isbool=U.isBool= function(a){return typeof a==='boolean'}
+U.eval=U.weval=function(a){
+	try{
+		return window.eval(a)
+	}catch(e){
+		return e
+	}
+}
 U.giout=U.giout||0
 U.out=function (a){
 	U.giout+=1
@@ -18,10 +25,11 @@ U.out=function (a){
 	window._=a
 	return a
 }
+U.glog=true
 U.log=function(){
 	if(arguments.length)a=arguments
 	else a=['U.log',new Date()]
-	console.log(...a)
+	if(U.glog)console.log(...a)
 	return a
 }
 U.str=function(a){
@@ -75,7 +83,9 @@ U.slice=function(a,stop){
 	}
 	return r
 }
-T.svgText_style="background:url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1.1\' width=\'30px\' height=\'30px\'>   <text x=\'0\' y=\'12\' style=\'fill:green;\' font-size=\'12\'>QGB</text></svg>')"
+/*   direct copy and paste  */
+T.svgText_html_style="background:url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1.1\' width=\'30px\' height=\'30px\'>   <text x=\'0\' y=\'12\' style=\'fill:green;\' font-size=\'12\'>QGB</text></svg>')"
+T.svgText_js_style="url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='30px' height='30px'>   <text x='0' y='12' style='fill:green;' font-size='12'>QGB</text></svg>\")"
 T.strip=T.trim=function(a){
 	return a.replace(/^\s+|\s+$/g, '')
 }
@@ -149,13 +159,13 @@ in snippets console.log useless???   Console > Hide all 2 Default
 	// console.log('OPENED', xhr.status);//        0
 
 	xhr.onprogress = function () {
-	  console.log('LOADING', xhr.status);
+	  U.log('LOADING', xhr.status);
 	};
 	if(onload){
 		xhr.onload = onload
 	}else{
 		xhr.onload = function () {
-		  console.log('DONE', xhr.status);
+		  U.log('DONE', xhr.status);
 		};
 	}
 	
