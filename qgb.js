@@ -45,7 +45,7 @@ U.out=function (a){
 	window._=a
 	return a
 }
-U.glog=true
+U.glog=U.glog&&true
 U.log=function(){
 	if(arguments.length)a=arguments
 	else a=['U.log',new Date()]
