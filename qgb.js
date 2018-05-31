@@ -6,7 +6,7 @@ U.isnum=U.isNum=   function(a){return typeof a==='number'}
 U.istr=U.isStr=    function(a){return typeof a==='string'}
 U.isbool=U.isBool= function(a){return typeof a==='boolean'}
 U.rangeIter=function* (start,stop,step){
-  for (var i = start; i <= stop; i+=step) yield i;
+  for (var i = start; i < stop; i+=step) yield i;
 }
 U.range=function(stop){
 	len=arguments.length
