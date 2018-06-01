@@ -171,7 +171,7 @@ N.http=function (url,m='get',onload=null){/*
 if m not 'get'  will post(data=m) 
 in snippets console.log useless???   Console > Hide all 2 Default 
 */
-	var xhr = new ();
+	var xhr = new XMLHttpRequest();
 	// console.log('UNSENT', xhr.status);// UNSENT 0
 	if(m==='get')xhr.open(m, url, true);
 	else		 xhr.open('POST', url, true);
@@ -185,14 +185,14 @@ in snippets console.log useless???   Console > Hide all 2 Default
 			xhr.onload = onload
 		}else{
 			xhr.onload = function () {
-			  U.log('DONE', xhr.status,xhr.DONE);
+			  U.log('DONE', xhr.status);
 			};
 		}
 		
 		xhr.onreadystatechange = function () {
 		   U.log('onreadystatechange', xhr.status,xhr.DONE);
 		}
-				
+			
 		if(m==='get')
 			xhr.send(null);	
 		else xhr.send(m);
