@@ -167,7 +167,7 @@ N.httpEval=N.httpeval=function(url){
 		console.log('N.httpEval',url)
 	})
 }
-N.http=function (url,m='get',onload=null){/*
+N.http=function (url,m='get',onload=null,alog=true){/*
 if m not 'get'  will post(data=m) 
 in snippets console.log useless???   Console > Hide all 2 Default 
 */
@@ -179,18 +179,18 @@ in snippets console.log useless???   Console > Hide all 2 Default
 	// console.log('OPENED', xhr.status);//        0
 	try{
 		xhr.onprogress = function () {
-		  U.log('LOADING', xhr.status);
+		 if(alog) U.log('LOADING', xhr.status);
 		};
 		if(onload){
 			xhr.onload = onload
 		}else{
 			xhr.onload = function () {
-			  U.log('DONE', xhr.status);
+			  if(alog) U.log('DONE', xhr.status);
 			};
 		}
 		
 		xhr.onreadystatechange = function () {
-		   U.log('onreadystatechange', xhr.status,xhr.DONE);
+		  if(alog)  U.log('onreadystatechange', xhr.status,xhr.DONE);
 		}
 			
 		if(m==='get')
@@ -198,7 +198,7 @@ in snippets console.log useless???   Console > Hide all 2 Default
 		else xhr.send(m);
 			
 	}catch(e){
-		U.log(e)
+		U.log(e)//网络出错不执行这个
 	}
 
 	return U.out(xhr)
