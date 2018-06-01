@@ -32,7 +32,7 @@ U.eval=U.weval=function(a){
 		return e
 	}
 }
-U.giout=U.giout||0
+U.giout=0
 U.out=function (a){
 	U.giout+=1
 	window["_"+U.giout]=a
@@ -45,7 +45,7 @@ U.out=function (a){
 	window._=a
 	return a
 }
-U.glog=U.glog&&true
+U.glog=true
 U.log=function(){
 	if(arguments.length)a=arguments
 	else a=['U.log',new Date()]
@@ -171,7 +171,7 @@ N.http=function (url,m='get',onload=null){/*
 if m not 'get'  will post(data=m) 
 in snippets console.log useless???   Console > Hide all 2 Default 
 */
-	var xhr = new XMLHttpRequest();
+	var xhr = new ();
 	// console.log('UNSENT', xhr.status);// UNSENT 0
 	if(m==='get')xhr.open(m, url, true);
 	else		 xhr.open('POST', url, true);
@@ -185,10 +185,14 @@ in snippets console.log useless???   Console > Hide all 2 Default
 			xhr.onload = onload
 		}else{
 			xhr.onload = function () {
-			  U.log('DONE', xhr.status);
+			  U.log('DONE', xhr.status,xhr.DONE);
 			};
 		}
 		
+		xhr.onreadystatechange = function () {
+		   U.log('onreadystatechange', xhr.status,xhr.DONE);
+		}
+				
 		if(m==='get')
 			xhr.send(null);	
 		else xhr.send(m);
