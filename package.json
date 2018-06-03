@@ -1,6 +1,6 @@
 {
   "name": "qgb",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "qgb js lib",
   "main": "qgb.js",
   "scripts": {
