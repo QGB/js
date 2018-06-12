@@ -1,21 +1,21 @@
 {
-  "name": "qgb",
-  "version": "0.0.2",
-  "description": "qgb js lib",
-  "main": "qgb.js",
-  "scripts": {
-    "dev": "webpack --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://coding.net/u/qgb/p/js/git"
-  },
-  "keywords": [
-    "javascript",
-    "utils",
-    "library"
-  ],
-  "author": "qgb",
-  "license": "MIT"
+ "license": "MIT", 
+ "name": "qgb", 
+ "repository": {
+  "url": "https://coding.net/u/qgb/p/js/git", 
+  "type": "git"
+ }, 
+ "author": "qgb", 
+ "version": "0.0.4", 
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1", 
+  "dev": "webpack --watch"
+ }, 
+ "keywords": [
+  "javascript", 
+  "utils", 
+  "library"
+ ], 
+ "main": "qgb.js", 
+ "description": "qgb js lib"
 }

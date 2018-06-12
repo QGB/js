@@ -1,10 +1,24 @@
 U={};T={};N={}
 U._TEXT=function(wrap) {return wrap.toString().match(/\/\*\s([\s\S]*)\s\*\//)[1];}
-U.islist=U.isList=U.isArray=Array.isArray
-U.isint=U.isInt=   Number.isInteger
-U.isnum=U.isNum=   function(a){return typeof a==='number'}
-U.istr=U.isStr=    function(a){return typeof a==='string'}
-U.isbool=U.isBool= function(a){return typeof a==='boolean'}
+U.islist =U.isList=U.isArray=Array.isArray
+U.isint  =U.isInt=   Number.isInteger
+U.isnum  =U.isNum=   function(a){return typeof a==='number'}
+U.istr   =U.isStr=    function(a){return typeof a==='string'}
+U.isbool =U.isBool= function(a){return typeof a==='boolean'}
+U.isfunc =U.callable=U.isCallable=U.isFunction=function(a){return a instanceof Function}
+U.isdate =U.isDate=function(a){return a instanceof Date}
+U.isregex=function(a){return a instanceof RegExp}
+U.isdict =U.isDict=function (v) {
+	if(v==={})return true
+	if(!v)return false
+	for(i in U){
+		if(!U.istr(i))continue
+		if(!i.startsWith('is') || !T.islower(i))continue
+		if(i.includes('dict'))continue
+		if(U[i](v))return false
+	}
+	return true
+}
 U.rangeIter=function* (start,stop,step){
   for (var i = start; i < stop; i+=step) yield i;
 }
@@ -103,9 +117,13 @@ U.slice=function(a,stop){
 	}
 	return r
 }
-/*   direct copy and paste  */
-T.svgText_html_style="background:url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1.1\' width=\'30px\' height=\'30px\'>   <text x=\'0\' y=\'12\' style=\'fill:green;\' font-size=\'12\'>QGB</text></svg>')"
-T.svgText_js_style="url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='30px' height='30px'>   <text x='0' y='12' style='fill:green;' font-size='12'>QGB</text></svg>\")"
+//////////   T   //////////////////*   direct copy and paste  */
+T.isupper=T.isUpper=function(a){
+	return a===a.toUpperCase()
+}
+T.islower=T.isLower=function(a){
+	return a===a.toLowerCase()
+}
 T.strip=T.trim=function(a){
 	return a.replace(/^\s+|\s+$/g, '')
 }
@@ -153,6 +171,12 @@ T.sub=function (a,start,end){//#TODO start lists
 	end=end-start
 	return a.substr(start,end)// substr(start,length)
 }
+T.svgText_html_style="background:url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1.1\' width=\'30px\' height=\'30px\'>   <text x=\'0\' y=\'12\' style=\'fill:green;\' font-size=\'12\'>QGB</text></svg>')"
+T.svgText_js_style="url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='30px' height='30px'>   <text x='0' y='12' style='fill:green;' font-size='12'>QGB</text></svg>\")"
+/////// N /////
+N.setHeader=function(xhr,header){
+	x=new XMLHttpRequest
+}
 
 N.postJSON=function(url,data){
 	if(!U.istr(data))data=JSON.stringify(data)
@@ -167,10 +191,20 @@ N.httpEval=N.httpeval=function(url){
 		console.log('N.httpEval',url)
 	})
 }
-N.http=function (url,m='get',onload=null,alog=true){/*
+N.http=function (url,m='get',onload=null,a={}){/*
 if m not 'get'  will post(data=m) 
 in snippets console.log useless???   Console > Hide all 2 Default 
 */
+	alog=true
+	if(onload && !U.isfunc(onload)){
+		if(!a)
+	}
+	if(U.isBool(a))alog=a
+	else{
+		if(U.istr(a))throw 'Need args dict'
+		if('alog' in a)alog=a.alog
+		if('header' in a)header=a.header
+	}
 	var xhr = new XMLHttpRequest();
 	// console.log('UNSENT', xhr.status);// UNSENT 0
 	if(m==='get')xhr.open(m, url, true);
