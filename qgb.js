@@ -11,7 +11,9 @@ U.isregex=function(a){return a instanceof RegExp}
 U.isDictEmpty=U.isEmptyDict=function(a){
     try{
 		return JSON.stringify(a)==='{}'
-	}catch(e)return false
+	}catch(e){
+		return false
+	}
 }
 U.isdict =U.isDict=function (a) {
 	if(U.isDictEmpty(a))return true
