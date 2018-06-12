@@ -8,14 +8,19 @@ U.isbool =U.isBool= function(a){return typeof a==='boolean'}
 U.isfunc =U.callable=U.isCallable=U.isFunction=function(a){return a instanceof Function}
 U.isdate =U.isDate=function(a){return a instanceof Date}
 U.isregex=function(a){return a instanceof RegExp}
-U.isdict =U.isDict=function (v) {
-	if(v==={})return true
-	if(!v)return false
+U.isDictEmpty=U.isEmptyDict=function(a){
+    try{
+		return JSON.stringify(a)==='{}'
+	}catch(e)return false
+}
+U.isdict =U.isDict=function (a) {
+	if(U.isDictEmpty(a))return true
+	if(!a)return false
 	for(i in U){
 		if(!U.istr(i))continue
 		if(!i.startsWith('is') || !T.islower(i))continue
 		if(i.includes('dict'))continue
-		if(U[i](v))return false
+		if(U[i](a))return false
 	}
 	return true
 }
@@ -182,7 +187,7 @@ N.postJSON=function(url,data){
 	if(!U.istr(data))data=JSON.stringify(data)
 	return N.http(url,data)
 }
-N.loadJQ=N.loadJQuery=function(){
+N.loadJQ=N.loadJQuery=function(	){
 	return N.httpEval('https://coding.net/u/qgb/p/js/git/raw/master/jquery-1.8.1.js')
 }
 N.httpEval=N.httpeval=function(url){
@@ -198,7 +203,7 @@ in snippets console.log useless???   Console > Hide all 2 Default
 	alog=true
 	header={}
 	if(onload && U.isDict(onload)){
-		if(a==={})a=onload
+		if(U.isDictEmpty(a))a=onload
 		else throw [onload,a]
 	}
 	if(U.isBool(a))alog=a
