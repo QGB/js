@@ -196,12 +196,14 @@ if m not 'get'  will post(data=m)
 in snippets console.log useless???   Console > Hide all 2 Default 
 */
 	alog=true
-	if(onload && !U.isfunc(onload)){
-		if(!a)
+	header={}
+	if(onload && U.isDict(onload)){
+		if(a==={})a=onload
+		else throw [onload,a]
 	}
 	if(U.isBool(a))alog=a
 	else{
-		if(U.istr(a))throw 'Need args dict'
+		if(!U.isDict(a))throw 'Need args dict'
 		if('alog' in a)alog=a.alog
 		if('header' in a)header=a.header
 	}
@@ -210,6 +212,9 @@ in snippets console.log useless???   Console > Hide all 2 Default
 	if(m==='get')xhr.open(m, url, true);
 	else		 xhr.open('POST', url, true);
 	
+	for(i in header){
+		xhr.setRequestHeader(i,header[i])
+	}
 	// console.log('OPENED', xhr.status);//        0
 	try{
 		xhr.onprogress = function () {
