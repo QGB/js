@@ -223,29 +223,27 @@ in snippets console.log useless???   Console > Hide all 2 Default
 		xhr.setRequestHeader(i,header[i])
 	}
 	// console.log('OPENED', xhr.status);//        0
-	try{
-		xhr.onprogress = function () {
-		 if(alog) U.log('LOADING', xhr.status);
+
+	xhr.onprogress = function () {
+	 if(alog) U.log('LOADING', xhr.status);
+	};
+	if(onload){
+		xhr.onload = onload
+	}else{
+		xhr.onload = function () {
+		  if(alog) U.log('DONE', xhr.status);
 		};
-		if(onload){
-			xhr.onload = onload
-		}else{
-			xhr.onload = function () {
-			  if(alog) U.log('DONE', xhr.status);
-			};
-		}
-		
-		xhr.onreadystatechange = function () {
-		  if(alog)  U.log('onreadystatechange', xhr.status,xhr.DONE);
-		}
-			
-		if(m==='get')
-			xhr.send(null);	
-		else xhr.send(m);
-			
-	}catch(e){
-		U.log(e)//网络出错不执行这个
 	}
+	
+	xhr.onreadystatechange = function () {
+	  // if(alog)  U.log('onreadystatechange', xhr.status,xhr.DONE);
+	}
+		
+	if(m==='get')
+		xhr.send(null);	
+	else xhr.send(m);
+			
+
 
 	return U.out(xhr)
 }
