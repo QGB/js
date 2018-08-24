@@ -7,6 +7,7 @@ if "%*"=="" (for /f "delims=" %%i in ('%wspath%datetime.bat') do set commit_msg=
 
 
 for %%a in ("%cd%") do set repo=%%~nxa
+git config --global http.sslverify "false"
 
 git config --global user.email qgbcs1@gmail.com
 git config --global user.name QGB
