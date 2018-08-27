@@ -1,14 +1,17 @@
 subdomains=[]
-btn=document.querySelector('.search-data-dataList-nextPage')
-do{
-	rs=document.querySelectorAll('.search-subdomains-column  > span > span.inlineAction-content > a')
+function get(){
+	rs=document.querySelectorAll('.search-subdomains-column > span > span.inlineAction-content > a')
 	for(i of  rs){
 		subdomains.push(i.text)
 	}
 	console.log(subdomains.length)
-	btn.click()
-}while(btn=document.querySelector('.search-data-dataList-nextPage'))
+}
 
+while(btn=document.querySelector('.search-data-dataList-nextPage')){
+	get()
+	btn.click()	
+}
+get()
 
 
 chrome.storage.sync.get('cjs_post_url',function(items){
