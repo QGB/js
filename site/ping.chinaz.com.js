@@ -7,7 +7,7 @@ for(i of ips){
 chrome.storage.sync.get('cjs_post_url',function(items){
 	url=items['cjs_post_url']+'data'
 	console.log(url)
-	N.postJSON('https://envcqb-8080-gcwmrj.web.ide.live/data',r)
+	N.postJSON(url,r)
 
  }
 )
