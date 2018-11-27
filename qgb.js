@@ -1,4 +1,19 @@
+gs_qgb_base_url='https://coding.net/u/qgb/p/js/git/raw/master/'
+loadQGB=function (isPrint){
+	xhr=new XMLHttpRequest()
+	xhr.open('get',gs_qgb_base_url+'qgb.js')
+	xhr.onload=function(){
+		eval(this.response)
+		if(isPrint===undefined) print('qgb loaded  '+this.response.length)
+	}
+	xhr.send()
+	return xhr
+}
+// loadQGB()
+
+/////////////////////////////////
 U={};T={};N={}
+
 U._TEXT=function(wrap) {return wrap.toString().match(/\/\*\s([\s\S]*)\s\*\//)[1];}
 U.islist =U.isList=U.isArray=Array.isArray
 U.isint  =U.isInt=   Number.isInteger
