@@ -11,4 +11,4 @@ for(i of ds){
 }
 N.postJSON('https://qgb.facebook.com/',ts)
 
-document.title=new Date()
+document.title= ts.length+' ' +new Date()
