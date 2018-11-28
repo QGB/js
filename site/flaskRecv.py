@@ -1,4 +1,5 @@
 #coding=utf8
+gsName='qgb.facebook.com'
 import sys;'qgb.U' in sys.modules or sys.path.append('G:/QGB/babun/cygwin/lib/python2.7/');from qgb import *;py=U.py
 sys.path.pop()
 import IPython;
@@ -28,32 +29,27 @@ def exit():
 def on_receive():
 	global gdata
 	U.log(request)
-	if not request or 1:
+	U.log(request.get_data())
+	if request.method=='GET':
 		return make_response(U.stime()+'\n===============\n'+U.pformat(U.threads()  )   )
-
 	#IPython.embed()
-	
-	t=request.path[1:]
 	
 	r=json.loads(request.get_data())
 	gdata.append(r)
-	# if t.startswith('Item'):gdb.merge(Item(r))
-	# else:
-		# for i in r:gdb.merge(globals()[t](i))
-	# try:
-		# gdb.commit()
-	# except Exception as e:
-		# py.traceback(e)
-		# gdb.rollback()
-	# response = make_response(pformat(request.headers)+'\n===============\n'+pformat(request.get_data())  )
-	return make_response('%s\n%s   %s'%(U.stime(),len(r),type(r)   ) )
-
-U.set(value=__file__,name='file')
+	
+	r=make_response('%s\n%s   %s'%(U.stime(),len(r),type(r)   ) )
+	r.headers['Access-Control-Allow-Origin'] = '*'
+	r.headers['Content-Type'] = 'text/plain;charset=utf-8'
+	return r
+	
+	
+# U.set(value=__file__,name='file')
+# U.set(name='file',value='facebook')
 def autoSave():
-	global gdata
+	global gdata,gsName
 	while True:
 		
-		F.dill_dump(obj=gdata,file=U.sdate()+T.fileName(U.get('file')))
+		F.dill_dump(obj=gdata,file=U.sdate()+gsName)
 		U.log('[%s] saved!!!!'% len(gdata))
 		U.sleep(30)
 		
@@ -62,7 +58,7 @@ gt.start()
 U.log(gt)
 
 key=r'G:\QGB\software\xxnet\data\gae_proxy\Certkey.pem'
-crt=r'G:\QGB\babun\cygwin\home\qgb\chromExt\tabList\lk.lk.crt'
+crt=r'G:\QGB\software\xxnet\data\gae_proxy\certs\%s.crt'%gsName
 ka={'port':443,'host':'0.0.0.0','ssl_context':(crt,key)}
 if __name__=='__main__':
 	# U.thread(target=IPython.embed).start() 
