@@ -1,8 +1,10 @@
 ds=document.querySelectorAll('div._4-u2')
 ts=[]
 for(i of ds){
+	// i.getAttribute('data-time')  这是页面动态上显示时间
+	// i.querySelector('._5ptz').getAttribute('data-utime')// what this??
 	try{
-		t=i.querySelector('._5ptz').getAttribute('data-time')
+		t=i.getAttribute('data-time')
 		ts.push([i.textContent,t])
 	}catch(e){
 		console.log('Error :',i,e)

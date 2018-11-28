@@ -35,7 +35,10 @@ def on_receive():
 	#IPython.embed()
 	
 	r=json.loads(request.get_data())
-	gdata.append(r)
+	if py.islist(r) and [i for i in r if py.islist(i)]:# 自动 去除外层多余list
+		gdata.extend(r)
+	else:
+		gdata.append(r)
 	
 	r=make_response('%s\n%s   %s'%(U.stime(),len(r),type(r)   ) )
 	r.headers['Access-Control-Allow-Origin'] = '*'
