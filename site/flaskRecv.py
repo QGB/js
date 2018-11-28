@@ -49,7 +49,7 @@ def autoSave():
 	global gdata,gsName
 	while True:
 		
-		F.dill_dump(obj=gdata,file=U.sdate()+gsName)
+		F.dill_dump(obj=gdata,file='{}_{}'.format(gsName,U.sdate() )    )
 		U.log('[%s] saved!!!!'% len(gdata))
 		U.sleep(30)
 		
