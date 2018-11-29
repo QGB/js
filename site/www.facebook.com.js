@@ -5,7 +5,10 @@ for(i of ds){
 	// i.querySelector('._5ptz').getAttribute('data-utime')// what this??
 	try{
 		t=i.getAttribute('data-time')
-		ts.push([i.textContent,t])
+		if(t){
+			ts.push([i.textContent,t])
+			i.innerHTML=''
+		}
 	}catch(e){
 		console.log('Error :',i,e)
 	}
