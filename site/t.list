@@ -1,0 +1,6 @@
+
+get_ipython().magic(u'pinfo open')
+U.r(F)
+F.writeIterable('t.list',In)
+U.r(F)
+F.writeIterable('t.list',In)

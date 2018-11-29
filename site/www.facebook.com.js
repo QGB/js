@@ -4,9 +4,10 @@ for(i of ds){
 	// i.getAttribute('data-time')  这是页面动态上显示时间
 	// i.querySelector('._5ptz').getAttribute('data-utime')// what this??
 	try{
-		t=i.getAttribute('data-time')
-		if(t){
-			ts.push([i.textContent,t])
+		time=i.getAttribute('data-time')
+		text=i.textContent
+		if(text &&　time){
+			ts.push([text,time])
 			i.innerHTML=''
 		}
 	}catch(e){
@@ -14,6 +15,8 @@ for(i of ds){
 	}
 	
 }
+
 N.postJSON('https://qgb.facebook.com/',ts)
 
 document.title= ts.length+' ' +new Date()
+i.innerHTML='<div>' +document.title+ '</div>'
