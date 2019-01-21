@@ -1,4 +1,5 @@
 #coding=utf8
+giAutoSave=99930
 gsName='qgb.facebook.com'
 import sys;'qgb.U' in sys.modules or sys.path.append('G:/QGB/babun/cygwin/lib/python2.7/');from qgb import *;py=U.py
 sys.path.pop()
@@ -7,6 +8,11 @@ gdata=[]
 
 from flask import Flask,request,make_response,json
 app = Flask(__name__)
+
+@app.route('/qs',methods=['POST','GET'])
+def qs():
+	U.log(request.get_data())
+	return '2333'
 
 @app.route('/t', methods=['GET'] )
 def test():
@@ -27,12 +33,12 @@ def exit():
 	
 @app.route('/', methods=['POST','GET'] )
 def on_receive():
-	global gdata
-	U.log(request)
+	global gdata,gsName,giAutoSave
+	# F.dill_dump(request,file='request')
 	U.log(request.get_data())
+	IPython.embed()
 	if request.method=='GET':
 		return make_response(U.stime()+'\n===============\n'+U.pformat(U.threads()  )   )
-	#IPython.embed()
 	
 	r=json.loads(request.get_data())
 	if py.islist(r) and [i for i in r if py.islist(i)]:# 自动 去除外层多余list
@@ -54,7 +60,7 @@ def autoSave():
 		
 		F.dill_dump(obj=gdata,file='{}_{}'.format(gsName,U.sdate() )    )
 		U.log('[%s] saved!!!!'% len(gdata))
-		U.sleep(30)
+		U.sleep(globals()['giAutoSave'])
 		
 gt=U.thread(target=autoSave)
 gt.start()
@@ -63,6 +69,7 @@ U.log(gt)
 key=r'G:\QGB\software\xxnet\data\gae_proxy\Certkey.pem'
 crt=r'G:\QGB\software\xxnet\data\gae_proxy\certs\%s.crt'%gsName
 ka={'port':443,'host':'0.0.0.0','ssl_context':(crt,key)}
+ka={'port':1212,'host':'0.0.0.0'}
 if __name__=='__main__':
 	# U.thread(target=IPython.embed).start() 
-	app.run(**ka,debug=0)
+	app.run(**ka,debug=1)
