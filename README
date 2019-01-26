@@ -1,0 +1,15 @@
+gs_qgb_base_url='https://coding.net/u/qgb/p/js/git/raw/master/'
+gs_qgb_base_url='http://qgb.'+window.location.host+'/'
+
+loadQGB=function (isPrint){
+	xhr=new XMLHttpRequest()
+	xhr.open('get',gs_qgb_base_url+'qgb.js')
+	xhr.onload=function(){
+		eval(this.response)
+		if(isPrint===undefined) console.log('qgb loaded  '+this.response.length)
+	}
+	xhr.send()
+	return xhr
+}
+loadQGB()
+

@@ -1,18 +1,25 @@
-gs_qgb_base_url='https://coding.net/u/qgb/p/js/git/raw/master/'
+(function(){
+"use strict"
+try{
+	gs_qgb_base_url=gs_qgb_base_url
+}catch(e){
+	var gs_qgb_base_url='https://coding.net/u/qgb/p/js/git/raw/master/'
+}
+
 loadQGB=function (isPrint){
-	xhr=new XMLHttpRequest()
+	var xhr=new XMLHttpRequest()
 	xhr.open('get',gs_qgb_base_url+'qgb.js')
 	xhr.onload=function(){
 		eval(this.response)
-		if(isPrint===undefined) print('qgb loaded  '+this.response.length)
+		if(isPrint===undefined) console.log('qgb loaded  '+this.response.length)
 	}
 	xhr.send()
 	return xhr
 }
 // loadQGB()
-
 /////////////////////////////////
-U={};T={};N={}
+
+var U={},T={},N={}
 
 U._TEXT=function(wrap) {return wrap.toString().match(/\/\*\s([\s\S]*)\s\*\//)[1];}
 U.islist =U.isList=U.isArray=Array.isArray
@@ -33,7 +40,7 @@ U.isDictEmpty=U.isEmptyDict=function(a){
 U.isdict =U.isDict=function (a) {
 	if(U.isDictEmpty(a))return true
 	if(!a)return false
-	for(i in U){
+	for(var i in U){
 		if(!U.istr(i))continue
 		if(!i.startsWith('is') || !T.islower(i))continue
 		if(i.includes('dict'))continue
@@ -45,9 +52,7 @@ U.rangeIter=function* (start,stop,step){
   for (var i = start; i < stop; i+=step) yield i;
 }
 U.range=function(stop){
-	len=arguments.length
-	start=0
-	step=1//#TODO
+	var len=arguments.length , start=0,	step=1//#TODO
 	// if(len===1)start=0
 	if(len===2){
 		start=arguments[0]
@@ -61,13 +66,7 @@ U.range=function(stop){
 	if(step===0)return []
 	return Array.from(U.rangeIter(start,stop,step) );
 }
-U.eval=U.weval=function(a){
-	try{
-		return window.eval(a)
-	}catch(e){
-		return e
-	}
-}
+
 U.giout=0
 U.out=function (a){
 	U.giout+=1
@@ -83,55 +82,54 @@ U.out=function (a){
 }
 U.glog=true
 U.log=function(){
-	if(arguments.length)a=arguments
-	else a=['U.log',new Date()]
+	if(arguments.length) var a=arguments
+	else var a=['U.log',new Date()]
 	if(U.glog)console.log(...a)
 	return a
 }
 U.str=function(a){
 	if(arguments.length==0)return ''
 	if(arguments.length>1){
-		a=U.list(arguments)
+		var a=U.list(arguments)
 		return U.str(a.shift())+','+U.str(...a)
 	}
 	if(! (typeof a==='string') ){
 		try{
-			j=JSON.stringify(a)
-			s=String(a)
-			if(j.length>s.length)a=j
-			else                 a=s
+			var j=JSON.stringify(a), s=String(a)
+			if(j.length>s.length) var a=j
+			else                  var a=s
 		}catch(e){
-			a=String(a)
+			var a=String(a)
 		}
 	}
 	return a
 }
 U.getValues=U.dictValues=function(a){
-	r=[]
-	for(i in a)r.push(a[i])
+	var r=[]
+	for(var i in a)r.push(a[i])
 	return r
 }
 U.getKeys=function(a){
-	r=[]
-	for(i in a)r.push(i)
+	var r=[]
+	for(var i in a)r.push(i)
 	return r
 }
 U.list=U.toList=function(a){
-	r=[]
-	for(i of a)r.push(i)
+	var r=[]
+	for(var i of a)r.push(i)
 	return r
 }
 U.slice=function(a,stop){
-	len=arguments.length
-	step=1//#TODO
-	if(len===2)start=0
+	var len=arguments.length
+	var step=1//#TODO
+	if(len===2)
+		var start=0
 	if(len===3){
-		start=arguments[1]
+		var start=arguments[1]
 		stop=arguments[2]
 	}
-	i=0
+	var i=0,r=[]
 	//if(!U.isList(a)) //TODO
-	r=[]
 	for(v of a){
 	    //U.log(start,i,stop)
 		if(start<=i && i<stop)r.push(v)
@@ -157,14 +155,14 @@ T.replaceAll=function(a,old,anew){
 	return a
 }
 T.sub=function (a,start,end){//#TODO start lists
-	startLen=start.length
+	var startLen=start.length
 	start=a.indexOf(start)
 	if(start===-1)return ''
 	else start+=startLen
 	
 	if(end){
 		if(U.isArray(end)){
-			for(i of end){
+			for(var i of end){
 				i=U.str(i)
 				if(i){
 					i=a.indexOf(i,start)
@@ -196,13 +194,20 @@ T.sub=function (a,start,end){//#TODO start lists
 T.svgText_html_style="background:url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1.1\' width=\'30px\' height=\'30px\'>   <text x=\'0\' y=\'12\' style=\'fill:green;\' font-size=\'12\'>QGB</text></svg>')"
 T.svgText_js_style="url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='30px' height='30px'>   <text x='0' y='12' style='fill:green;' font-size='12'>QGB</text></svg>\")"
 /////// N /////
-N.setHeader=function(xhr,header){
-	x=new XMLHttpRequest
+// var 
+// N.setHeader=function(xhr,header){
+	// x=new XMLHttpRequest
+// }
+
+N.postJSON_qgb_host=function(data){
+	var url='http://qgb.'+window.location.host+'/'
+	var header={'_host':window.location.host}
+	return N.postJSON(url,data,header)
 }
 
-N.postJSON=function(url,data){
+N.postJSON=function(url,data,header={}){
 	if(!U.istr(data))data=JSON.stringify(data)
-	return N.http(url,data)
+	return N.http(url,data,null,{'header':header})
 }
 N.loadJQ=N.loadJQuery=function(	){
 	return N.httpEval('https://coding.net/u/qgb/p/js/git/raw/master/jquery-1.8.1.js')
@@ -217,8 +222,7 @@ N.http=function (url,m='get',onload=null,a={}){/*
 if m not 'get'  will post(data=m) 
 in snippets console.log useless???   Console > Hide all 2 Default 
 */
-	alog=true
-	header={}
+	var alog=true,	header={}
 	if(onload && U.isDict(onload)){
 		if(U.isDictEmpty(a))a=onload
 		else throw [onload,a]
@@ -234,7 +238,7 @@ in snippets console.log useless???   Console > Hide all 2 Default
 	if(m==='get')xhr.open(m, url, true);
 	else		 xhr.open('POST', url, true);
 	
-	for(i in header){
+	for(var i in header){
 		xhr.setRequestHeader(i,header[i])
 	}
 	// console.log('OPENED', xhr.status);//        0
@@ -263,22 +267,9 @@ in snippets console.log useless???   Console > Hide all 2 Default
 	return U.out(xhr)
 }
 
-if(window){
-	window.U=U
-	window.T=T
-	window.N=N
-	qgb='from qgb.js snippet'
-	console.log(qgb)
-	window.qgb=qgb
-}
 //////////////////////////////
 
 function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms) )  }
-
-// window.glout=window.glout||[]
-
-
-
 async function test(){
 
 // 	alert(0)
@@ -286,8 +277,30 @@ async function test(){
 // 	sleep(999)
 	console.log(new Date())
 }
+var gsh2c='https://github.com/niklasvh/html2canvas/releases/download/v1.0.0-alpha.12/html2canvas.js'
 
 
-//alert(gs)
+return function(){
+	if(window){
+		window.U=U
+		window.T=T
+		window.N=N
+		var qgb='loaded qgb.js '+new Date()
+		console.log(qgb)
+		window.qgb=qgb
+	}
+}
 
-gsh2c='https://github.com/niklasvh/html2canvas/releases/download/v1.0.0-alpha.12/html2canvas.js'
+
+
+ }())  ()//end of closure
+ 
+if(window){
+	window.U.eval=window.U.weval=function(a){
+		try{
+			return window.eval(a)
+		}catch(e){
+			return e
+		}
+	}
+}

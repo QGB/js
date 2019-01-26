@@ -8,6 +8,10 @@ gdata=[]
 
 from flask import Flask,request,make_response,json
 app = Flask(__name__)
+def json_loads(request):
+	import json
+	try:return json.loads(request.get_data())
+	except Exception as e:return py.No(e)
 
 @app.route('/qs',methods=['POST','GET'])
 def qs():
@@ -31,24 +35,28 @@ def qgb_js():
 def exit():
 	U.exit()
 	
-@app.route('/', methods=['POST','GET'] )
+@app.route('/', methods=['POST','GET','OPTIONS'] )
 def on_receive():
 	global gdata,gsName,giAutoSave
 	# F.dill_dump(request,file='request')
-	U.log(request.get_data())
-	IPython.embed()
-	if request.method=='GET':
-		return make_response(U.stime()+'\n===============\n'+U.pformat(U.threads()  )   )
+	# U.log([233333333,request])
+	# U.log(request.get_data())
 	
-	r=json.loads(request.get_data())
+	if request.method=='GET':
+		IPython.embed()
+		return make_response(U.stime()+'\n===============\n'+U.pformat(U.threads()  )   )
+		
+	r=json_loads(request)
 	if py.islist(r) and [i for i in r if py.islist(i)]:# 自动 去除外层多余list
 		gdata.extend(r)
 	else:
-		gdata.append(r)
+		if r:gdata.append(r)
 	
 	r=make_response('%s\n%s   %s'%(U.stime(),len(r),type(r)   ) )
 	r.headers['Access-Control-Allow-Origin'] = '*'
+	r.headers['Access-Control-Allow-Headers'] = '*'
 	r.headers['Content-Type'] = 'text/plain;charset=utf-8'
+	# U.log(r.headers)
 	return r
 	
 	
@@ -68,8 +76,18 @@ U.log(gt)
 
 key=r'G:\QGB\software\xxnet\data\gae_proxy\Certkey.pem'
 crt=r'G:\QGB\software\xxnet\data\gae_proxy\certs\%s.crt'%gsName
+
+port=1212;host='0.0.0.0'
+if len(sys.argv)>1:
+	aport=sys.argv[1]
+	if ':' in aport:
+		host=T.sub(aport,'',':')
+		aport=T.sub(aport,':','')
+	port=U.int(aport) or port
+
 ka={'port':443,'host':'0.0.0.0','ssl_context':(crt,key)}
-ka={'port':1212,'host':'0.0.0.0'}
+ka={'port':port,'host':host}
+
 if __name__=='__main__':
 	# U.thread(target=IPython.embed).start() 
-	app.run(**ka,debug=1)
+	app.run(**ka,debug=1,threaded=True)
