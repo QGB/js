@@ -7,6 +7,12 @@ try{
 }
 
 loadQGB=function (isPrint){
+	try{
+		gs_qgb_base_url=gs_qgb_base_url
+		if(gs_qgb_base_url.length<4)throw 'gs_qgb_base_url.length<4'
+	}catch(e){
+		var gs_qgb_base_url='https://coding.net/u/qgb/p/js/git/raw/master/'
+	}
 	var xhr=new XMLHttpRequest()
 	xhr.open('get',gs_qgb_base_url+'qgb.js')
 	xhr.onload=function(){
@@ -47,6 +53,12 @@ U.isdict =U.isDict=function (a) {
 		if(U[i](a))return false
 	}
 	return true
+}
+U.isNode=function (o){
+  return (
+    typeof Node === "object" ? o instanceof Node : 
+    o && typeof o === "object" && typeof o.nodeType === "number" && typeof o.nodeName==="string"
+  );
 }
 U.rangeIter=function* (start,stop,step){
   for (var i = start; i < stop; i+=step) yield i;

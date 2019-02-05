@@ -6,12 +6,34 @@ sys.path.pop()
 import IPython;
 gdata=[]
 
-from flask import Flask,request,make_response,json
-app = Flask(__name__)
 def json_loads(request):
 	import json
 	try:return json.loads(request.get_data())
 	except Exception as e:return py.No(e)
+	
+from flask import Flask,request,make_response,json
+app = Flask(__name__)
+app.static_folder='..'
+@app.route('/<f>', methods=['GET'] )
+def staticFile(f):
+	p=F.Path(__file__).absolute().parent.parent
+	p=p.joinpath(f)
+	if p.exists():
+		rb=p.read_bytes()
+		r=make_response(rb)
+		r.headers['Content-Type'] = 'text/plain;charset='+T.detect(rb,0.8,'utf-8')
+	else:
+		r=make_response(str(p)+'not found!',404)
+	r.headers['Access-Control-Allow-Origin'] = '*'
+	return r
+	# U.ipyEmbed()()
+	# return app.send_static_file(f)
+# @app.route('/qgb.js', methods=['GET'] )
+# def qgb_js():
+	# r=make_response(F.read(r'G:\QGB\babun\cygwin\home\qgb\js\qgb.js' ) )
+	# r.headers['Access-Control-Allow-Origin'] = '*'
+	# r.headers['Content-Type'] = 'text/plain;charset=utf-8'
+	# return r
 
 @app.route('/qs',methods=['POST','GET'])
 def qs():
@@ -24,12 +46,6 @@ def test():
 	gdata.append(U.stime())
 	return '%s' % len(gdata)
 	
-@app.route('/qgb.js', methods=['GET'] )
-def qgb_js():
-	r=make_response(F.read(r'G:\QGB\babun\cygwin\home\qgb\js\qgb.js' ) )
-	r.headers['Access-Control-Allow-Origin'] = '*'
-	r.headers['Content-Type'] = 'text/plain;charset=utf-8'
-	return r
 	
 @app.route('/x', methods=['GET'] )
 def exit():

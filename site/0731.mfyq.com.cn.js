@@ -20,10 +20,9 @@ else
 ds=doc.querySelectorAll ('[id^=listNews]')
 r=[]
 var ii=0
-for(i of ds){
-	ii+=1;	if(ii!=8)continue
-
-	img=i.querySelector ('.tx')
+for(var i of ds){
+	// ii+=1;	if(ii!=8)continue
+	var img=i.querySelector ('.tx')
 	img=(img && img.getAttribute('src') ) || ''
 	//img=i.querySelector ('img[src*=yqt365]')   //sinaimg
 	tag=i.querySelector ('[id^=listTag]')
@@ -39,17 +38,19 @@ for(i of ds){
 
 	_pics=i.querySelector('.actizPicShow')
 	psrc=[]
-	if(pics){
+	if(_pics){
 		_pics=_pics.querySelectorAll('img')
-		for(var ii of pics){
+		for(var ii of _pics){
 			psrc.push(ii.getAttribute('src') || ii.outerHTML  )
 		}
 	}
-	
+	ri=[img,title,sensitive,origin,summary,psrc]
+	for(j in ri){
+		if(ri[j].innerText)	ri[j]=ri[j].innerText
+	}
 	//qqq=i.querySelector('')
 	//qqq=i.querySelector('')
-
-    r.push(i.innerText)
+    r.push(ri)
 }
 
 
