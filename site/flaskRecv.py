@@ -1,7 +1,7 @@
 #coding=utf8
 giAutoSave=99930
 gsName='qgb.facebook.com'
-import sys;'qgb.U' in sys.modules or sys.path.append('G:/QGB/babun/cygwin/lib/python2.7/');from qgb import *;py=U.py
+import sys;'qgb.U' in sys.modules or sys.path.append('G:/QGB/babun/cygwin/bin');from qgb import *;py=U.py
 sys.path.pop()
 import IPython;
 gdata=[]
@@ -14,30 +14,48 @@ def json_loads(request):
 from flask import Flask,request,make_response,json
 app = Flask(__name__)
 
+gtabs=[]
 @app.route('/tabs',methods=['POST','GET'])
 def chrome_tabs():
-	sa='<a href={}>{}</a>  <br>'
-	r=''
-	max=py.max([len(i['title'].encode('utf-8')) for i in ts)
-	for i in ts:
-		u=i['url']
-		t=i['title']
-		il=i['title'].encode('utf-8')
-		il=py.len(il)
-		r+=sa.format(u,t+'&nbsp'*(max+5-il)+u)
-
+	global gtabs
+	def tabs_html():
+		sa='{}<a href={} target="_blank"  >{}</a>  <br>'
+		r=''
+		re=''#err
+		max=py.max([len(U.getDictV( i,'title').encode('gb18030')) for i in gtabs ]  ) if gtabs else -1
+		for n,i in enumerate(reversed( gtabs ) ):  #最新的 在最前面
+			u=U.getDictV( i,'url')  
+			t=U.getDictV( i,'title')  
+			if not u:
+				re+=repr(i)+'\n'
+				continue
+			
+			il=py.len( t.encode('gb18030') )
+			#1080 screen   246
+			i=sa.format(  
+				('[%-4s]' % n).replace(' ','&nbsp')  ,    
+				u,
+				t+'&nbsp'*(max+5-il)+  T.replacey(u,['?'],'~')[:246 - max - 55]
+			)
+			# i='[%s]%s <br>' % ( ('%4s' % il).replace(' ','&nbsp'),t)
+			r+=i
+		
+		return U.stime()+  '&nbsp&nbsp&nbsp&nbsp <a href={0}>{0}</a>'.format(gsurl+'/tabs')  + '<br>'+  r +'<textarea style="width:100%; height:100%;white-space:nowrap;"> {} </textarea>'.format(re)
+	
 	if request.method =='GET':
-		return make_response(U.stime()+'\n===============\n'+U.pformat(U.threads()  )   )
-	#'Access-Control-Request-Headers': '_host',	#OPTIONS 预检请求
-	#'-Host': '0731.mfyq.com.cn',               # POST
+		resp= make_response( tabs_html() )
+		resp.headers['Access-Control-Allow-Origin'] = '*'
+		return resp
+	
+	if request.method =='POST':
+		ts=json_loads(request)
+		for i in ts:
+			if i not in gtabs:gtabs.append(i)
+		return make_response('gtabs len [{}]  {}'.format(py.len(gtabs), U.stime()   )    )
+			
 	if request.method =='PUT':
 		IPython.embed()
-	if request.method =='POST':
-		# U.log(request.headers)
-		if '-Host' in request.headers:
-			gsName=request.headers['-Host']
-				
-	r=json_loads(request)
+
 
 app.static_folder='..'
 # @app.route('/<f>', methods=['GET'] )
@@ -89,6 +107,20 @@ def test(ai):
 def exit():
 	save()
 	U.exit()
+		
+globals()['t6075']= F.dill_load( r'G:/TEST/mfyq/tsz3t-6075.dill')	
+@app.route('/action', methods=['GET'] )
+def action():
+	n=U.ct(t6075)
+	r=make_response( '\n'.join([i[0] for i in t6075][n*200:(n+1)*200])  )
+	
+	r.headers['Access-Control-Allow-Origin'] = '*'
+	r.headers['Access-Control-Allow-Methods'] = '*'
+	r.headers['Access-Control-Allow-Headers'] = '*'
+	
+	r.headers['Content-Type'] = 'text/plain'
+	r.headers['Content-Type'] = 'text/plain;charset=utf-8'
+	return r
 	
 @app.route('/', methods=['POST','GET','OPTIONS'] )
 def on_receive():
@@ -140,25 +172,28 @@ def autoSave():
 		U.log('[%s] saved!!!!'% save() )
 		U.sleep(globals()['giAutoSave'])
 		
-gt=U.thread(target=autoSave)
-gt.start()
-U.log(gt)
+gt_autoSave=U.thread(target=autoSave)
+# gt.start()
+# U.log(gt)
 
 key=r'G:\QGB\software\xxnet\data\gae_proxy\Certkey.pem'
 crt=r'G:\QGB\software\xxnet\data\gae_proxy\certs\%s.crt'%gsName
 
-port=1212;host='0.0.0.0'
+gprotocol='http'
+ghost='0.0.0.0'
+gport=1212
 if len(sys.argv)>1:
 	aport=sys.argv[1]
 	if ':' in aport:
-		host=T.sub(aport,'',':')
+		ghost=T.sub(aport,'',':')
 		aport=T.sub(aport,':','')
-	port=U.int(aport) or port
+	gport=U.int(aport) or gport
 
-ka={'port':port,'host':host}
-if port==443:
+ka={'port':gport,'host':ghost}
+if gport==443:
 	ka['ssl_context']=(crt,key)
-
+	gprotocol='https'
+gsurl='{}://{}:{}'.format(gprotocol,ghost,gport)
 if __name__=='__main__':
 	# U.thread(target=IPython.embed).start() 
 	app.run(**ka,debug=1,threaded=True)

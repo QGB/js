@@ -93,12 +93,13 @@ U.out=function (a){
 	return a
 }
 U.glog=true
-U.log=function(){
+U.log=U.logDate=function(){
 	if(arguments.length) var a=arguments
 	else var a=['U.log',new Date()]
 	if(U.glog)console.log(...a)
 	return a
 }
+
 U.str=function(a){
 	if(arguments.length==0)return ''
 	if(arguments.length>1){
@@ -149,7 +150,21 @@ U.slice=function(a,stop){
 	}
 	return r
 }
+U.ArgumentError='ArgumentError'
+U.ArgumentUnsupported=U.ArgumentError +' > ' + 'ArgumentUnsupported'
+
 //////////   T   //////////////////*   direct copy and paste  */
+T.str2unicode=function(a){
+	if(!U.istr(a)) throw U.ArgumentError
+	var str =''; 
+	for(var i=0;i<a.length;i++){
+	  str+="\\u"+a.charCodeAt(i).toString(16);
+	}
+	return str;
+}
+T.unicode2str=function(a){
+	
+}	
 T.isupper=T.isUpper=function(a){
 	return a===a.toUpperCase()
 }
@@ -211,8 +226,9 @@ T.svgText_js_style="url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/
 	// x=new XMLHttpRequest
 // }
 
-N.postJSON_qgb_host=function(data){
-	var url='http://qgb.'+window.location.host+'/'
+N.postJSON_qgb_host=function(data,url='/'){
+	if(!url || url==='/')url='/'
+	url='http://qgb.'+window.location.host+url
 	var header={'_host':window.location.host}
 	return N.postJSON(url,data,header)
 }
@@ -279,6 +295,22 @@ in snippets console.log useless???   Console > Hide all 2 Default
 	return U.out(xhr)
 }
 
+
+N.get=function (url) {
+    return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', url, true);
+        // xhr.responseType = 'document';
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                resolve(xhr.response);
+            } else {
+                reject(xhr.status);
+            }
+        };
+        xhr.send();
+    });
+}
 //////////////////////////////
 
 function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms) )  }
