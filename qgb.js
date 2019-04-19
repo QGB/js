@@ -153,6 +153,8 @@ U.slice=function(a,stop){
 U.ArgumentError='ArgumentError'
 U.ArgumentUnsupported=U.ArgumentError +' > ' + 'ArgumentUnsupported'
 
+U.sleep=function (ms) {return new Promise(resolve => setTimeout(resolve, ms) )  }
+
 //////////   T   //////////////////*   direct copy and paste  */
 T.str2unicode=function(a){
 	if(!U.istr(a)) throw U.ArgumentError

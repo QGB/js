@@ -1,4 +1,6 @@
 #coding=utf8
+print(__file__)
+
 import sys;'qgb.U' in sys.modules or sys.path.append('G:/QGB/babun/cygwin/lib/python2.7/');from qgb import *;py=U.py
 sys.path.pop()
 
@@ -17,5 +19,5 @@ def on_receive():
 key=r'G:\QGB\software\xxnet\data\gae_proxy\Certkey.pem'
 crt=r'G:\QGB\babun\cygwin\home\qgb\chromExt\tabList\lk.lk.crt'
 ka={'port':443,'host':'0.0.0.0','ssl_context':(crt,key)}
-if __name__=='__main__':
-	app.run(**ka,debug=0)
+# if __name__=='__main__':
+	# app.run(**ka,debug=0)
