@@ -27,7 +27,7 @@ loadQGB=function (isPrint){
 
 var U={},T={},N={}
 
-U._TEXT=function(wrap) {return wrap.toString().match(/\/\*\s([\s\S]*)\s\*\//)[1];}
+U.TXT=U.text=U._TEXT=function(wrap) {return wrap.toString().match(/\/\*\s([\s\S]*)\s\*\//)[1];}
 U.islist =U.isList=U.isArray=Array.isArray
 U.isint  =U.isInt=   Number.isInteger
 U.isnum  =U.isNum=   function(a){return typeof a==='number'}

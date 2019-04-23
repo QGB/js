@@ -1,6 +1,6 @@
 #coding=utf8
 giAutoSave=99930
-gsName='qgb.facebook.com'
+gsName='qgb.icp.chinaz.com'
 import sys
 DRIVER=sys.base_prefix[:2]
 'qgb.U' in sys.modules or sys.path.append(DRIVER+'/QGB/babun/cygwin/bin');from qgb import *;py=U.py
