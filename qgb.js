@@ -8,7 +8,7 @@ try{
 	var gs_qgb_base_url='https://coding.net/u/qgb/p/js/git/raw/master/'
 }
 U.gs_qgb_base_url='https://coding.net/u/qgb/p/js/git/raw/master/'
-U.gs_qgb_base_url='https://qgb.'+window.location.host+'/'
+// U.gs_qgb_base_url='https://qgb.'+window.location.host+'/'
 // U.gs_qgb_base_url='http://192.168.1.111/'
 U.gscript=''
 function loadScript (script='qgb.js',isPrint=undefined){
