@@ -1,5 +1,5 @@
 (function(){
-
+var E={}
 
 E.getAllTabs=async function (){
 	var ts=await new Promise(function (resolve, reject) {
