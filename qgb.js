@@ -1,31 +1,38 @@
 (function(){
 "use strict"
+var U={},T={},N={}
+
 try{
 	gs_qgb_base_url=gs_qgb_base_url
 }catch(e){
 	var gs_qgb_base_url='https://coding.net/u/qgb/p/js/git/raw/master/'
 }
-
-loadQGB=function (isPrint){
+U.gs_qgb_base_url='https://coding.net/u/qgb/p/js/git/raw/master/'
+U.gs_qgb_base_url='https://qgb.'+window.location.host+'/'
+// U.gs_qgb_base_url='http://192.168.1.111/'
+U.gscript=''
+function loadScript (script='qgb.js',isPrint=undefined){
 	try{
-		gs_qgb_base_url=gs_qgb_base_url
+		gs_qgb_base_url=U.gs_qgb_base_url
 		if(gs_qgb_base_url.length<4)throw 'gs_qgb_base_url.length<4'
 	}catch(e){
 		var gs_qgb_base_url='https://coding.net/u/qgb/p/js/git/raw/master/'
 	}
 	var xhr=new XMLHttpRequest()
-	xhr.open('get',gs_qgb_base_url+'qgb.js')
+	xhr.open('get',gs_qgb_base_url+script)
 	xhr.onload=function(){
-		eval(this.response)
-		if(isPrint===undefined) console.log('qgb loaded  '+this.response.length)
+		U.gscript=this.response
+		eval(gscript)
+		if(isPrint===undefined) console.log('loaded length  '+this.response.length)
 	}
 	xhr.send()
 	return xhr
 }
+
+U.loads=U.loadScript=U.loadQGB=loadScript
 // loadQGB()
 /////////////////////////////////
 
-var U={},T={},N={}
 
 U.TXT=U.text=U._TEXT=function(wrap) {return wrap.toString().match(/\/\*\s([\s\S]*)\s\*\//)[1];}
 U.islist =U.isList=U.isArray=Array.isArray
